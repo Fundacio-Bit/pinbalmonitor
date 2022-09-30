@@ -2,25 +2,24 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  Navigate,
 } from "react-router-dom";
-import ServeisEMISERV from './components/serveis/ServeisEMISERV';
-import ServeisPadro from './components/serveis/ServeisPadro';
-import ServeisFamiliaNombrosa from './components/serveis/ServeisFamiliaNombrosa';
-import ServeisPropis from './components/serveis/ServeisPropis';
 
 import React from 'react'
-import Home from "./components/Home";
+import Layout from "./components/Layout";
+import * as peticions from './components/serveis/data/dadesServeis'
+
 
 export default function Enrutador() {
   return (
     <div>
     <Router>
       <Routes>
-      <Route path="/" exact element={<Home />} />
-      <Route path="/serveis-propis" exact element={<ServeisPropis />} />
-      <Route path="/serveis-familia-nombrosa" exact element={<ServeisFamiliaNombrosa />} />
-      <Route path="/serveis-padro" exact element={<ServeisPadro />} />
-      <Route path="/serveis-emiserv" exact element={<ServeisEMISERV />} />
+      <Route path="/" element= {<Navigate  to='/serveis-propis' replace={true} />} />
+      <Route path="/serveis-propis" exact element={<Layout servei={peticions.dadesServeisPropis} />} />
+      <Route path="/serveis-familia-nombrosa" exact element={<Layout servei={peticions.dadesFamiliaNombrosa}/>} />
+      <Route path="/serveis-padro" exact element={<Layout servei={peticions.dadesPadro}/>} />
+      <Route path="/serveis-emiserv" exact element={<Layout servei={peticions.dadesEMISERV}/>} />
       </Routes>
       </Router>
 

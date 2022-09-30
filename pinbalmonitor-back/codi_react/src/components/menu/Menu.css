@@ -1,4 +1,7 @@
 .menu{
  display: flex;
- flex-direction: column;
+ justify-content: space-around;
+ background-color: coral;
 }
+
+.selected {background-color: purple ;}
