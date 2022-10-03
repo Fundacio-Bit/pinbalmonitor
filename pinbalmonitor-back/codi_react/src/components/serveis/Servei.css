@@ -3,3 +3,6 @@
     flex-direction: column;
     align-items: center;
 }
+
+.superior{display: flex;
+justify-content: space-between;}
