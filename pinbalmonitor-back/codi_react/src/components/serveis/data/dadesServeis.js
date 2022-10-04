@@ -1,35 +1,41 @@
-const dadesEMISERV = {
-  titolServei: "Serveis de l'EMISERV",
+const dadesFuncionamentPinbal = {
+  titolServei: "Validar el funcionament de PINBAL",
 
   peticions: [
-    { nom: "Consulta de servei emiserv a" },
-    { nom: "Consulta de servei emiserv b" },
-    { nom: "Consulta de servei emiserv c" },
+    { nom: "Petició a un servei intermediat de l'estat" },
+    { nom: "Petició a un servei  oferit pel Govern" },
+    { nom: "Petició a un servei  oferit per una altra administració de la CAIB"},
+    { nom: "Petició asíncrona a un servei intermediat de l'estat"},
+    { nom: "Obtenir justificant de verificació de dades"},
+
   ],
 };
 
 const dadesServeisPropis = {
-  titolServei: "Serveis propis",
+  titolServei: "Validar serveis propis del GOIB",
   peticions: [
     {
-      nom: "Consulta de servei propi a",
+      nom: "Consulta de servei de Discapacitat",
     },
 
-    { nom: "Consulta de servei propi b" },
-    { nom: "Consulta de servei propi c" },
+    { nom: "Consulta de servei de pagament amb l'ATIB per ajudes i subvencions" },
+    { nom: "Consulta de servei de pagament amb l'ATIB per contractacions" },
+    { nom: "Consulta de servei d'estar matriculat a un centre educatiu" },
+    { nom: "Obtenir un justificant de verificació de dades" },
+
+
   ],
 };
 
 const dadesFamiliaNombrosa = {
-  titolServei: "Dades família nombrosa",
+  titolServei: "Validar emissors de família nombrosa",
   peticions: [
-    { nom: "Consulta de fam nombrosa" },
-    { nom: "Consulta de fam nombrosa" },
-    { nom: "Consulta de fam nombrosa" },
+    { nom: "Consulta de família nombrosa - Mallorca" },
+    { nom: "Consulta de família nombrosa - Menorca" },
   ],
 };
 
-const dadesPadro = {
+const dadesPadro = { // Pendent -> encara no ho actualitz perquè pertany a un altre issue
   titolServei: "Serveis de padró municipal",
   peticions: [
     { nom: "Consulta de padró històric" },
@@ -37,4 +43,4 @@ const dadesPadro = {
   ],
 };
 
-export { dadesEMISERV, dadesServeisPropis, dadesPadro, dadesFamiliaNombrosa };
+export { dadesFuncionamentPinbal, dadesServeisPropis, dadesPadro, dadesFamiliaNombrosa };
