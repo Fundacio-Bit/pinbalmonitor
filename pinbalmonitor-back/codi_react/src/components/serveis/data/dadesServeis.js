@@ -4,10 +4,11 @@ const dadesFuncionamentPinbal = {
   peticions: [
     { nom: "Petició a un servei intermediat de l'estat" },
     { nom: "Petició a un servei  oferit pel Govern" },
-    { nom: "Petició a un servei  oferit per una altra administració de la CAIB"},
-    { nom: "Petició asíncrona a un servei intermediat de l'estat"},
-    { nom: "Obtenir justificant de verificació de dades"},
-
+    {
+      nom: "Petició a un servei  oferit per una altra administració de la CAIB",
+    },
+    { nom: "Petició asíncrona a un servei intermediat de l'estat" },
+    { nom: "Obtenir justificant de verificació de dades" },
   ],
 };
 
@@ -18,12 +19,12 @@ const dadesServeisPropis = {
       nom: "Consulta de servei de Discapacitat",
     },
 
-    { nom: "Consulta de servei de pagament amb l'ATIB per ajudes i subvencions" },
+    {
+      nom: "Consulta de servei de pagament amb l'ATIB per ajudes i subvencions",
+    },
     { nom: "Consulta de servei de pagament amb l'ATIB per contractacions" },
     { nom: "Consulta de servei d'estar matriculat a un centre educatiu" },
     { nom: "Obtenir un justificant de verificació de dades" },
-
-
   ],
 };
 
@@ -35,12 +36,34 @@ const dadesFamiliaNombrosa = {
   ],
 };
 
-const dadesPadro = { // Pendent -> encara no ho actualitz perquè pertany a un altre issue
+const dadesPadro = {
+  // Pendent -> encara no ho actualitz perquè pertany a un altre issue
   titolServei: "Serveis de padró municipal",
-  peticions: [
-    { nom: "Consulta de padró històric" },
-    { nom: "Consulta de padró de convivència" },
+  subserveis: [
+    {
+      nom: "Consulta de padró històric",
+      peticions: [
+        { nom: "Ajunatment d'Algaida" },
+        { nom: "Ajunatment de Palma" },
+        { nom: "Ajunatment de Calvià" },
+        { nom: "Ajunatment de Maó" },
+      ],
+    },
+    {
+      nom: "Consulta de padró de convivència",
+      peticions: [
+        { nom: "Ajunatment d'Algaida" },
+        { nom: "Ajunatment de Palma" },
+        { nom: "Ajunatment de Calvià" },
+        { nom: "Ajunatment de Maó" },
+      ],
+    },
   ],
 };
 
-export { dadesFuncionamentPinbal, dadesServeisPropis, dadesPadro, dadesFamiliaNombrosa };
+export {
+  dadesFuncionamentPinbal,
+  dadesServeisPropis,
+  dadesPadro,
+  dadesFamiliaNombrosa,
+};
