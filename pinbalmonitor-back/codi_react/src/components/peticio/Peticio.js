@@ -45,7 +45,7 @@ export default function Peticio(props) {
       placement="left-start"
       title={`${loading ? "Executant..." : "Executar"}`}
     >
-      <div
+      <button
         onClick={mockLoading}
         className={`container-peticio ${loading ? "loading" : ""} ${
           resultatProva === "exit" ? "exit" : ""
@@ -71,7 +71,7 @@ export default function Peticio(props) {
             )
           }
         </div>
-      </div>
+      </button>
       
     </Tooltip>
     
