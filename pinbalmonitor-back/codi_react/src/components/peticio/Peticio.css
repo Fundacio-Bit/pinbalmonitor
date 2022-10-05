@@ -96,9 +96,9 @@ Estils quan ratolí a sobre de la petició o aquesta está carregant
     cursor: pointer;
 }
 
-.container-peticio:hovetext {
+.container-peticio:hover .text-peticio {
     transition: all 0.3s ease-out;
-    color: var(--blanc);
+    color: var(--clar);
 }
 
 .container-peticio:hover .nombre-peticio-container,
