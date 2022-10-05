@@ -4,7 +4,8 @@ import Peticio from "../peticio/Peticio";
 import "./Servei.css";
 
 export default function Servei(props) {
-  let titolServei = props.servei.titolServei;
+  let servei = props.servei;
+  let titolServei = servei.titolServei;
   /* La variable d'entorn serveix per ser passada al component
    ** fill per a que la petició apunti a la url corresponent.
    ** L'entorn és modificat a través del component Opcions entorn
@@ -19,18 +20,42 @@ export default function Servei(props) {
    **(la info s'agafa de serveis/data/dadesSeveis) i és pasada per props
    ** des de l'enrutador a través del component pare (layout):
    */
-  let peticions = props.servei.peticions;
-  const peticionsElement = peticions.map((peticio, index) => (
-    <Peticio entorn={entorn} key={index} {...peticio} />
-  ));
+  function renderitzarLlistaDePeticions(llistaPeticions) {
+    return llistaPeticions.map((peticio, index) => (
+      <Peticio entorn={entorn}  key={index} nombre={index + 1}{...peticio} />
+    ));
+  }
+  function renderitzarServeiSimple(){
+    let peticions = servei.peticions;
+      return (
+        <div className="peticions">
+          {renderitzarLlistaDePeticions(peticions)}
+        </div>)
+  };
+
+  function renderitzarServeiAmbSubserveis() {
+    let subserveis = servei.subserveis;
+    return subserveis.map((subservei, index) => (
+      <div className="subservei" key={index}>
+        <h2> {subservei.nom}</h2>
+        <div className="peticions">
+        {renderitzarLlistaDePeticions(subservei.peticions)}
+        </div>
+
+      </div>
+    ));
+  }
+  const renderitzarServei = () => {
+    return servei.subserveis ?  renderitzarServeiAmbSubserveis() : renderitzarServeiSimple()
+  };
 
   return (
     <div className="servei">
       <div className="superior">
-        <span>{titolServei}</span>
+        <h1>{titolServei}</h1>
         <OpcionsEntorn handleChange={handleChange} entorn={entorn} />
       </div>
-      <div className="peticions">{peticionsElement}</div>
+      {renderitzarServei()}
     </div>
   );
 }
