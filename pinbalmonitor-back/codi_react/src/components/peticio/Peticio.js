@@ -65,7 +65,7 @@ export default function Peticio(props) {
           {
             // Si està carregant tindrem loader, si no, botó de play
             loading ? (
-              <CircularProgress className="loader" />
+              <CircularProgress style={{color:"var(--blanc)"}} />
             ) : (
               iconePlayOReplay()
             )
