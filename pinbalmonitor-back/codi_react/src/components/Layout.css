@@ -1,2 +1,16 @@
+:root { /* idea inicial de paleta de colors -> pendent canviar*/
+       --color-primari: #6E3667;
+       --clar: #fff7e6;
+       --fosc:  #391e2d;
+       --blanc: rgb(252, 237, 254);
+
+     }
+
+
 .servei{margin-left: 10%;
         margin-right: 10%;}
+
+ body{
+        font-family: 'Lexend Exa', sans-serif;
+        font-family: 'Montserrat', sans-serif;
+ }

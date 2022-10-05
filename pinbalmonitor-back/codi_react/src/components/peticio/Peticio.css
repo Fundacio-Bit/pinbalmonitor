@@ -1,7 +1,181 @@
-.container-peticio{
+:root {
+    --primari-exit: #3f983f;
+    --fosc-exit: #0e4927;
+    --clar-exit: #c0fec8;
+
+
+    --primari-fall: #f14646;
+    --fosc-fall: #590000;
+    --clar-fall: #fdcdc6;
+}
+
+/* 
+-----------------------------------------------------------------------
+Estils bàsic 
+-----------------------------------------------------------------------
+*/
+.container-peticio {
     width: 100%;
-    height: 200px;
-    background-color: cadetblue;
-    border-radius: 3px;
-    margin-top:20px;
+    height: 90px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    position: relative;
+    background-color: var(--clar);
+    z-index: 0;
+}
+.text-peticio{
+    height: 100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 4%;
+}
+.text-peticio span {
+    z-index: 1;
+    font-size: 1.1em;
+    font-weight: 550;
+
+}
+
+.nombre-peticio-container {
+    background-color: var(--color-primari);
+    width: 40px;
+    height: 40px;
+    color: var(--blanc);
+    font-weight: bolder;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: absolute;
+    top: -16px;
+    left: 10px;
+    z-index: 1;
+    rotate: 45deg;
+}
+
+.nombre-peticio-container span {
+    rotate: -45deg
+}
+
+.executar-icone {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+
+.container-peticio .executar-boto {
+    border-radius: 0 10px 0 50px;
+    height: 40px;
+    width: 40px;
+    padding-left: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: var(--color-primari);
+    color: var(--blanc);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: -1;
+}
+
+
+
+/*
+-----------------------------------------------------------------------
+Estils quan ratolí a sobre de la petició o aquesta está carregant
+-----------------------------------------------------------------------
+*/
+
+.container-peticio:hover {
+    transition: color 0.3s ease-out;
+    cursor: pointer;
+}
+
+.container-peticio:hovetext {
+    transition: all 0.3s ease-out;
+    color: var(--blanc);
+}
+
+.container-peticio:hover .nombre-peticio-container,
+.loading .nombre-peticio-container {
+    background-color: var(--fosc);
+    transition: all 0.5s ease-out;
+}
+
+.container-peticio:hover .executar-boto,
+.loading .executar-boto {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    transition: all 0.3s ease-out;
+    border-radius: inherit;
+}
+
+/*
+-----------------------------------------------------------------------
+Estils quan la petició és exitosa
+-----------------------------------------------------------------------
+*/
+
+
+.container-peticio.exit .executar-boto {
+    background-color: var(--primari-exit)
+}
+
+.container-peticio.exit .nombre-peticio-container {
+    background-color: var(--primari-exit);
+}
+
+.container-peticio.exit:hover .nombre-peticio-container,
+.container-peticio.exit.loading .nombre-peticio-container {
+    background-color: var(--fosc-exit);
+}
+
+.container-peticio.exit {
+    background-color: var(--clar-exit);
+}
+
+.container-peticio.exitext {
+    color: var(--fosc-exit);
+}
+
+.container-peticio.exit:hovetext {
+    color: var(--clar-exit);
+}
+
+/*
+-----------------------------------------------------------------------
+Estils quan la petició falla
+-----------------------------------------------------------------------
+*/
+
+
+.container-peticio.fall .executar-boto {
+    background-color: var(--primari-fall)
+}
+
+.container-peticio.fall .nombre-peticio-container {
+    background-color: var(--primari-fall);
+}
+
+.container-peticio.fall:hover .nombre-peticio-container,
+.container-peticio.fall.loading .nombre-peticio-container {
+    background-color: var(--fosc-fall);
+}
+
+.container-peticio.fall {
+    background-color: var(--clar-fall);
+}
+
+.container-peticio.faltext {
+    color: var(--fosc-fall);
+}
+
+.container-peticio.fall:hovetext {
+    color: var(--clar-fall);
 }
