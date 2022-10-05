@@ -37,7 +37,7 @@ export default function Peticio(props) {
 
   useEffect(() => {
     setResultatProva("");
-  }, [entorn]);
+  }, [entorn, props.servei]);
 
   return (
     <Tooltip
