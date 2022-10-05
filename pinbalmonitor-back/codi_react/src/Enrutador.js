@@ -17,8 +17,8 @@ export default function Enrutador() {
       <Routes>
       <Route path="/" element= {<Navigate  to='/serveis-propis' replace={true} />} />
       <Route path="/serveis-propis" exact element={<Layout servei={peticions.dadesServeisPropis} />} />
-      <Route path="/emissors-padro" exact element={<Layout servei={peticions.dadesFamiliaNombrosa}/>} />
-      <Route path="/emissors-familia-nombrosa" exact element={<Layout servei={peticions.dadesPadro}/>} />
+      <Route path="/emissors-padro" exact element={<Layout servei={peticions.dadesPadro}/>} />
+      <Route path="/emissors-familia-nombrosa" exact element={<Layout servei={peticions.dadesFamiliaNombrosa}/>} />
       <Route path="/funcionament-pinbal" exact element={<Layout servei={peticions.dadesFuncionamentPinbal}/>} />
       </Routes>
       </Router>
