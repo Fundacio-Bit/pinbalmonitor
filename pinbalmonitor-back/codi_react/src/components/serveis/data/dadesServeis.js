@@ -43,19 +43,19 @@ const dadesPadro = {
     {
       nom: "Consulta de padró històric",
       peticions: [
-        { nom: "Ajunatment d'Algaida" },
-        { nom: "Ajunatment de Palma" },
-        { nom: "Ajunatment de Calvià" },
-        { nom: "Ajunatment de Maó" },
+        { nom: "Ajuntament d'Algaida" },
+        { nom: "Ajuntament de Palma" },
+        { nom: "Ajuntament de Calvià" },
+        { nom: "Ajuntament de Maó" },
       ],
     },
     {
       nom: "Consulta de padró de convivència",
       peticions: [
-        { nom: "Ajunatment d'Algaida" },
-        { nom: "Ajunatment de Palma" },
-        { nom: "Ajunatment de Calvià" },
-        { nom: "Ajunatment de Maó" },
+        { nom: "Ajuntament d'Algaida" },
+        { nom: "Ajuntament de Palma" },
+        { nom: "Ajuntament de Calvià" },
+        { nom: "Ajuntament de Maó" },
       ],
     },
   ],
