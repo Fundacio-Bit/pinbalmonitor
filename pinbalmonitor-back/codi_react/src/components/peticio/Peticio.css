@@ -16,6 +16,11 @@ Estils bàsic
 */
 .container-peticio {
     width: 100%;
+
+}
+
+.peticio {
+    width: 100%;
     height: 90px;
     box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
     border-radius: 10px;
@@ -25,16 +30,18 @@ Estils bàsic
     z-index: 0;
     font-family: 'Montserrat';
     font-size: 1rem;
-    border: none        
+    border: none
 }
-.text-peticio{
+
+.text-peticio {
     height: 100%;
-    width:100%;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: row;
     padding-left: 4%;
 }
+
 .text-peticio span {
     z-index: 1;
     font-size: 1.1em;
@@ -70,7 +77,7 @@ Estils bàsic
     right: 10px;
 }
 
-.container-peticio .executar-boto {
+.peticio .executar-boto {
     border-radius: 0 10px 0 50px;
     height: 40px;
     width: 40px;
@@ -93,29 +100,30 @@ Estils bàsic
 Estils quan ratolí a sobre de la petició o aquesta está carregant
 -----------------------------------------------------------------------
 */
-.container-peticio:focus-visible {
+.peticio:focus-visible {
     outline: none;
 }
-.container-peticio:hover {
+
+.peticio:hover {
     transition: color 0.3s ease-out;
     cursor: pointer;
 }
 
-.container-peticio:hover .text-peticio,
-.container-peticio:focus-visible .text-peticio  {
+.peticio:hover .text-peticio,
+.peticio:focus-visible .text-peticio {
     transition: all 0.3s ease-out;
     color: var(--clar);
 }
 
-.container-peticio:hover .nombre-peticio-container,
-.container-peticio:focus-visible .nombre-peticio-container,
+.peticio:hover .nombre-peticio-container,
+.peticio:focus-visible .nombre-peticio-container,
 .loading .nombre-peticio-container {
     background-color: var(--fosc);
     transition: all 0.5s ease-out;
 }
 
-.container-peticio:hover .executar-boto,
-.container-peticio:focus-visible .executar-boto,
+.peticio:hover .executar-boto,
+.peticio:focus-visible .executar-boto,
 .loading .executar-boto {
     width: 100%;
     height: 100%;
@@ -131,31 +139,30 @@ Estils quan la petició és exitosa
 */
 
 
-.container-peticio.exit .executar-boto {
+.peticio.exit .executar-boto {
     background-color: var(--primari-exit)
 }
 
-.container-peticio.exit .nombre-peticio-container {
-    background-color: var(--primari-exit);              
+.peticio.exit .nombre-peticio-container {
+    background-color: var(--primari-exit);
 }
 
-.container-peticio.exit:hover .nombre-peticio-container,
-.container-peticio.exit:focus-visible .nombre-peticio-container,
-.container-peticio.exit.loading .nombre-peticio-container {
+.peticio.exit:hover .nombre-peticio-container,
+.peticio.exit:focus-visible .nombre-peticio-container,
+.peticio.exit.loading .nombre-peticio-container {
     background-color: var(--fosc-exit);
 }
 
-.container-peticio.exit {
+.peticio.exit {
     background-color: var(--clar-exit);
 }
 
-.container-peticio.exitext {
+.peticio.exitext {
     color: var(--fosc-exit);
 }
 
-.container-peticio.exit:hover .text-peticio,
-.container-peticio.fall:focus-visible .text-peticio 
-    {
+.peticio.exit:hover .text-peticio,
+.peticio.fall:focus-visible .text-peticio {
     color: var(--clar-exit);
 }
 
@@ -166,29 +173,29 @@ Estils quan la petició falla
 */
 
 
-.container-peticio.fall .executar-boto {
+.peticio.fall .executar-boto {
     background-color: var(--primari-fall)
 }
 
-.container-peticio.fall .nombre-peticio-container {
+.peticio.fall .nombre-peticio-container {
     background-color: var(--primari-fall);
 }
 
-.container-peticio.fall:hover .nombre-peticio-container,
-.container-peticio.fall:focus-visible .nombre-peticio-container,
-.container-peticio.fall.loading .nombre-peticio-container {
+.peticio.fall:hover .nombre-peticio-container,
+.peticio.fall:focus-visible .nombre-peticio-container,
+.peticio.fall.loading .nombre-peticio-container {
     background-color: var(--fosc-fall);
 }
 
-.container-peticio.fall {
+.peticio.fall {
     background-color: var(--clar-fall);
 }
 
-.container-peticio.faltext {
+.peticio.faltext {
     color: var(--fosc-fall);
 }
 
-.container-peticio.fall:hover .text-peticio,
-.container-peticio.fall:focus-visible .text-peticio  {
+.peticio.fall:hover .text-peticio,
+.peticio.fall:focus-visible .text-peticio {
     color: var(--clar-fall);
 }

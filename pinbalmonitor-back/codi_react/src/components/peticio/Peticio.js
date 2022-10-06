@@ -3,6 +3,7 @@ import "./Peticio.css";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { CircularProgress, Tooltip } from "@mui/material";
+import SnackbarResultat from "../snackbarResultat/SnackbarResultat";
 
 export default function Peticio(props) {
   const [loading, setLoading] = useState(false);
@@ -40,40 +41,46 @@ export default function Peticio(props) {
   }, [entorn, props.servei]);
 
   return (
-    <Tooltip
-      arrow
-      placement="left-start"
-      title={`${loading ? "Executant..." : "Executar"}`}
-    >
-      <button
-        onClick={mockLoading}
-        className={`container-peticio ${loading ? "loading" : ""} ${
-          resultatProva === "exit" ? "exit" : ""
-        } ${resultatProva === "fall" ? "fall" : ""}`}
+    <div className="container-peticio">
+      <Tooltip
+        arrow
+        placement="left-start"
+        title={`${loading ? "Executant..." : "Executar"}`}
       >
-        <div className="nombre-peticio-container">
-          <span>{props.nombre}</span>
-        </div>
-        {!loading ? (
-          <div className="text-peticio">
-            <span className="nom-peticio">{nom}</span>
+        <button
+          onClick={mockLoading}
+          className={`peticio ${loading ? "loading" : ""} ${
+            resultatProva === "exit" ? "exit" : ""
+          } ${resultatProva === "fall" ? "fall" : ""}`}
+        >
+          <div className="nombre-peticio-container">
+            <span>{props.nombre}</span>
           </div>
-        ) : (
-          ""
-        )}
-        <div className="executar-boto">
-          {
-            // Si està carregant tindrem loader, si no, botó de play
-            loading ? (
-              <CircularProgress style={{color:"var(--blanc)"}} />
-            ) : (
-              iconePlayOReplay()
-            )
-          }
-        </div>
-      </button>
-      
-    </Tooltip>
-    
+          {!loading ? (
+            <div className="text-peticio">
+              <span className="nom-peticio">{nom}</span>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="executar-boto">
+            {
+              // Si està carregant tindrem loader, si no, botó de play
+              loading ? (
+                <CircularProgress style={{ color: "var(--blanc)" }} />
+              ) : (
+                iconePlayOReplay()
+              )
+            }
+          </div>
+        </button>
+      </Tooltip>
+      <SnackbarResultat
+        obert={resultatProva === "" ? false : true}
+        resultatProva={resultatProva}
+        nom={nom}
+        entorn={entorn}
+      ></SnackbarResultat>
+    </div>
   );
 }
