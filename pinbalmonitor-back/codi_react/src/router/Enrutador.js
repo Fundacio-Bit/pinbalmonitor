@@ -10,8 +10,8 @@ import Layout from "../components/Layout";
 import { rutesServeis } from "./rutesServeis";
 
 let rutaLandingPage = rutesServeis[0].path;
-let elementRutesAServeis = rutesServeis.map((ruta) => (
-  <Route path={ruta.path} exact element={<Layout servei={ruta.servei} />} />
+let elementRutesAServeis = rutesServeis.map((ruta, index) => (
+  <Route key={index} path={ruta.path} exact element={<Layout servei={ruta.servei} />} />
 ));
 
 export default function Enrutador() {
