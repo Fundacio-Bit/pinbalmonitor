@@ -1,7 +1,0 @@
-.menu{
- display: flex;
- justify-content: space-around;
- background-color: coral;
-}
-
-.selected {background-color: purple ;}
