@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import React from "react";
-import Layout from "../components/Layout";
+import Layout from "../views/layoutServeis/Layout";
 import { rutesServeis } from "./rutesServeis";
 
 let rutaLandingPage = rutesServeis[0].path;

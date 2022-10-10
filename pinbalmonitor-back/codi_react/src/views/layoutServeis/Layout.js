@@ -1,7 +1,7 @@
 import React from "react";
-import Servei from "./serveis/Servei";
+import Servei from "../../components/serveis/Servei";
 import "./Layout.css";
-import Navbar from "./navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 
 
 export default function Layout(props) {
