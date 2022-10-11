@@ -80,7 +80,6 @@ const Navbar = () => {
             >
               {rutesServeis.map((pagina) => (
                 <MenuItem
-                size="large"
                   component={NavLink}
                   to={pagina.path}
                   key={pagina.nomAMenu}
