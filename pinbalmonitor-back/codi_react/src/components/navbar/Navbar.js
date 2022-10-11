@@ -80,6 +80,7 @@ const Navbar = () => {
             >
               {rutesServeis.map((pagina) => (
                 <MenuItem
+
                   component={NavLink}
                   to={pagina.path}
                   key={pagina.nomAMenu}
@@ -116,6 +117,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {rutesServeis.map((pagina) => (
               <Button
+              size="large"
                 component={NavLink}
                 to={pagina.path}
                 key={pagina.nomAMenu}
@@ -128,7 +130,8 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Button color="inherit">Tancar sessió</Button>
+
+            <Button size="large" color="inherit">Tancar sessió</Button>
           </Box>
         </Toolbar>
       </Container>
