@@ -2,3 +2,12 @@ header.barraSuperior{
     background-color: var(--fosc);
     margin-bottom: 30px;
 }
+
+@media (min-width: 1536px) {
+    #appBar .css-19r6kue-MuiContainer-root {
+        max-width: 100%;
+        padding-left: 10%;
+        padding-right: 10%;
+
+    }
+}

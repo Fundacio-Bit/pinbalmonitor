@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar className="barraSuperior" position="static">
+    <AppBar id="appBar" className="barraSuperior" position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* TÍTOL PANTALLES GRANS*/}
@@ -80,6 +80,7 @@ const Navbar = () => {
             >
               {rutesServeis.map((pagina) => (
                 <MenuItem
+                size="large"
                   component={NavLink}
                   to={pagina.path}
                   key={pagina.nomAMenu}
