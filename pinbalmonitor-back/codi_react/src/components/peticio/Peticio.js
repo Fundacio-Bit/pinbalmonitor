@@ -4,6 +4,8 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { CircularProgress, Tooltip } from "@mui/material";
 import SnackbarResultat from "../snackbarResultat/SnackbarResultat";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import ErrorIcon from '@mui/icons-material/Error';
 
 export default function Peticio(props) {
   const [loading, setLoading] = useState(false);
@@ -31,6 +33,15 @@ export default function Peticio(props) {
     );
   }
 
+  function iconeResultat() {
+    if (resultatProva && !loading)
+      return resultatProva === "exit" ? (
+        <CheckCircleIcon className="icone-output-exit icone-output"> </CheckCircleIcon>
+      ) : (
+        <ErrorIcon  className="icone-output-fall icone-output"></ErrorIcon>
+      );
+  }
+
   let nom = props.nom;
   let entorn = props.entorn;
   // entorn -> variable que servirà per saber quina petició es cridarà
@@ -47,33 +58,36 @@ export default function Peticio(props) {
         placement="left-start"
         title={`${loading ? "Executant..." : "Executar"}`}
       >
-        <button
-          onClick={mockLoading}
-          className={`peticio ${loading ? "loading" : ""} ${
-            resultatProva === "exit" ? "exit" : ""
-          } ${resultatProva === "fall" ? "fall" : ""}`}
-        >
-          <div className="nombre-peticio-container">
-            <span>{props.nombre}</span>
-          </div>
-          {!loading ? (
-            <div className="text-peticio">
-              <span className="nom-peticio">{nom}</span>
+          <button
+            onClick={mockLoading}
+            className={`peticio ${loading ? "loading" : ""} ${
+              resultatProva === "exit" ? "exit" : ""
+            } ${resultatProva === "fall" ? "fall" : ""}`}
+          >
+            <div className="nombre-peticio-container">
+              <span>{props.nombre}</span>
             </div>
-          ) : (
-            ""
-          )}
-          <div className="executar-boto">
-            {
-              // Si està carregant tindrem loader, si no, botó de play
-              loading ? (
-                <CircularProgress style={{ color: "var(--blanc)" }} />
-              ) : (
-                iconePlayOReplay()
-              )
-            }
-          </div>
-        </button>
+            {!loading ? (
+              <div className="text-peticio">
+                <span className="nom-peticio">{nom}</span>
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="executar-boto">
+              {
+                // Si està carregant tindrem loader, si no, botó de play
+                loading ? (
+                  <CircularProgress style={{ color: "var(--blanc)" }} />
+                ) : (
+                  iconePlayOReplay()
+                )
+              }
+            </div>
+            {iconeResultat()}
+
+          </button>
+
       </Tooltip>
       <SnackbarResultat
         obert={resultatProva === "" ? false : true}
