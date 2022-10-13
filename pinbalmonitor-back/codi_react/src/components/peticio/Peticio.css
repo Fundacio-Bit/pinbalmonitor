@@ -35,7 +35,6 @@ Estils bàsic
 
 .text-peticio {
     height: 100%;
-    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -131,6 +130,15 @@ Estils quan ratolí a sobre de la petició o aquesta está carregant
     transition: all 0.3s ease-out;
     border-radius: inherit;
 }
+
+.peticio:hover .executar-icone,
+.peticio:focus-visible .executar-icone,
+.loading .executar-icone {
+    top: 33px;
+    transition: all 0.3s ease-out;
+
+}
+
 
 /*
 -----------------------------------------------------------------------
