@@ -36,7 +36,7 @@ const Navbar = () => {
             variant="h6"
             noWrap
             sx={{
-              paddingRight : "3rem",
+              paddingRight: "3rem",
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "Segoe UI",
@@ -61,6 +61,7 @@ const Navbar = () => {
             </IconButton>
             {/* MENU PANTALLES PETITES*/}
             <Menu
+              className="pagines"
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -80,7 +81,6 @@ const Navbar = () => {
             >
               {rutesServeis.map((pagina) => (
                 <MenuItem
-
                   component={NavLink}
                   to={pagina.path}
                   key={pagina.nomAMenu}
@@ -117,7 +117,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {rutesServeis.map((pagina) => (
               <Button
-              size="large"
+                size="large"
                 component={NavLink}
                 to={pagina.path}
                 key={pagina.nomAMenu}
@@ -129,10 +129,11 @@ const Navbar = () => {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-
-            <Button size="large" color="inherit">Tancar sessió</Button>
-          </Box>
+          {/*<Box sx={{ flexGrow: 0 }}>
+            <Button size="large" color="inherit">
+              Tancar sessió
+            </Button>
+          </Box>*/}
         </Toolbar>
       </Container>
     </AppBar>
