@@ -188,7 +188,7 @@ Estils quan la petició és exitosa
 
 .peticio.exit:hover .text-peticio,
 .peticio.fall:focus-visible .text-peticio {
-    color: var(--clar-exit);
+    color: var(--blanc);
 }
 
 
@@ -228,7 +228,7 @@ Estils quan la petició falla
 
 .peticio.fall:hover .text-peticio,
 .peticio.fall:focus-visible .text-peticio {
-    color: var(--clar-fall);
+    color: var(--blanc);
 }
 
 .icone-output-fall {
