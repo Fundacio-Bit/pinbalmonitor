@@ -1,0 +1,32 @@
+button#scroll-up {
+
+    background-color: var(--color-primari);
+    border: solid 3px var(--blanc);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    outline: none;
+
+}
+
+button#scroll-up:hover, button#scroll-up:focus-visible {
+    background-color: var(--fosc);
+    outline: none;
+
+}
+
+button#scroll-up:hover .icone-scroll-up, button#scroll-up:focus-visible .icone-scroll-up {
+    color: rgb(218, 215, 215);
+
+}
+
+.icone-scroll-up {
+    color: var(--blanc);
+}
