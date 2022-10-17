@@ -53,7 +53,7 @@ export default function Servei(props) {
   return (
     <div className="servei">
       <div className="superior">
-        <h1>{titolServei} - {functions.capitalitzar(entorn)}</h1>
+        <h1>{titolServei} - <span className={`text-entorn ${entorn==="proves" ? "text-proves" : "text-producció"}`}>{functions.capitalitzar(entorn)}</span></h1>
         <OpcionsEntorn handleChange={handleChange} entorn={entorn} />
       </div>
       {renderitzarServei()}

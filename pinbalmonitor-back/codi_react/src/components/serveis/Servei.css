@@ -1,9 +1,35 @@
-.peticions{
+.peticions {
     padding-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.superior{display: flex;
-justify-content: space-between;}
+.superior {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-entorn {
+    border-radius: 5px;
+    padding: 4px;
+    border: solid 1px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+
+}
+
+
+.text-proves {
+
+    background-color: rgba(255, 208, 0, 0.21);
+    border-color: #eebe306e;
+    color: #140800;
+}
+
+.text-producció {
+    background-color: #00ffa91c;
+    border-color: #3095ee6e;
+    color: #000223;
+
+}
+
