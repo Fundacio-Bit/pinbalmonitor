@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import OpcionsEntorn from "../opcionsEntorn/OpcionsEntorn";
 import Peticio from "../peticio/Peticio";
+import functions from '../helpers'
 import "./Servei.css";
 
 export default function Servei(props) {
@@ -52,7 +53,7 @@ export default function Servei(props) {
   return (
     <div className="servei">
       <div className="superior">
-        <h1>{titolServei} - {entorn.charAt(0).toUpperCase() + entorn.slice(1)}</h1>
+        <h1>{titolServei} - {functions.capitalitzar(entorn)}</h1>
         <OpcionsEntorn handleChange={handleChange} entorn={entorn} />
       </div>
       {renderitzarServei()}
