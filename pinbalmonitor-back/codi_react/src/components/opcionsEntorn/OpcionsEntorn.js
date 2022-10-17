@@ -56,14 +56,14 @@ export default function OpcionsEntorn(props) {
               <Radio
                 sx={radioStyles}
                 type="radio"
-                checked={entorn === "produccio"}
-                value="produccio"
+                checked={entorn === "producció"}
+                value="producció"
                 name="entorn"
                 size="small"
                 onChange={handleChange}
               />
             }
-            label="Produccio"
+            label="Producció"
           />
         </RadioGroup>
       </FormControl>

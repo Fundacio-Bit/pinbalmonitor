@@ -52,7 +52,7 @@ export default function Servei(props) {
   return (
     <div className="servei">
       <div className="superior">
-        <h1>{titolServei}</h1>
+        <h1>{titolServei} - {entorn.charAt(0).toUpperCase() + entorn.slice(1)}</h1>
         <OpcionsEntorn handleChange={handleChange} entorn={entorn} />
       </div>
       {renderitzarServei()}
