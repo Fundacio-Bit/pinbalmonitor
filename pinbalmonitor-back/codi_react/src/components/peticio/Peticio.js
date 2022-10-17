@@ -21,7 +21,7 @@ export default function Peticio(props) {
       /* Temporalment
       Per fer sa prova d'una petició exitosa es fa a proves,
        per fer sa prova d'un error es fa a producció"*/
-      entorn === "proves" ? setResultatProva("exit") : setResultatProva("fall");
+       Math.random() < 0.5 ? setResultatProva("exit") : setResultatProva("fall");
     }, 2000);
   }
 
@@ -94,6 +94,7 @@ export default function Peticio(props) {
         resultatProva={resultatProva}
         nom={nom}
         entorn={entorn}
+        loading={loading}
       ></SnackbarResultat>
     </div>
   );

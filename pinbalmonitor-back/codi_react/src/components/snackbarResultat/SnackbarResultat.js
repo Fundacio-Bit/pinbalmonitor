@@ -1,5 +1,4 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useEffect } from "react";
@@ -7,11 +6,15 @@ export default function SnackbarResultat(props) {
   let nomPeticio = props.nom;
   let resultatProva = props.resultatProva;
   let entorn = props.entorn;
+  let loading = props.loading;
   const [obert, setObert] = React.useState(props.obert);
 
   useEffect(() => {
-    setObert(props.obert);
-  }, [props.obert]);
+    // Obrir cada vegada que la petició acabi de carregar (és a dir quan s'hagi executat)
+    if (loading === false) {
+      setObert(props.obert);
+    }
+  }, [props.obert, loading]);
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -26,7 +29,8 @@ export default function SnackbarResultat(props) {
 
   function getTextResultat() {
     if (resultatProva === "exit") {
-      return `La prova de la petició ${nomPeticio} ha estat exitosa en l'entorn de ${entorn}
+      return `La prova de la petició ${nomPeticio} ha estat exitosa en l'entorn de ${entorn}. 
+      El servei està funcionant
     `;
     }
     if (resultatProva === "fall") {
@@ -50,7 +54,10 @@ export default function SnackbarResultat(props) {
           onClose={tancar}
           severity={`${resultatProva === "exit" ? "success" : "error"}`}
           sx={{ width: "100%" }}
-        > {getTextResultat()}</Alert>
+        >
+          {" "}
+          {getTextResultat()}
+        </Alert>
       </Snackbar>
     </div>
   );
