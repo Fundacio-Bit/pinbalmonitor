@@ -45,7 +45,6 @@ export default function SnackbarResultat(props) {
   return (
     <div>
       <Snackbar
-        style={{ "z-index": 4000 }}
         open={obert}
         autoHideDuration={3000}
         onClose={tancar}
