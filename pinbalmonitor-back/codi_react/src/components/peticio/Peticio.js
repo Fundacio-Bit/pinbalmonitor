@@ -11,10 +11,14 @@ import ErrorIcon from "@mui/icons-material/Error";
 export default function Peticio(props) {
   const [loading, setLoading] = useState(false);
   const [resultatProva, setResultatProva] = useSessionStorage(
-    `${props.id}`,
+    `resultat ${props.id}`,
     ""
   );
   const [obrirSnackbar, setObrirSnackbar] = useState(false);
+  const [ultimaProva, setUltimaProva] = useSessionStorage(
+    `ultimaProva ${props.id}`,
+    ""
+  );
 
   /** Loading fals temporal per a poder fer els estils  de la petició quan carrega
    * TODO: Ha de ser esborrat quan tinguem el controlador.
@@ -29,6 +33,17 @@ export default function Peticio(props) {
         Math.random() < 0.5
           ? setResultatProva("exit")
           : setResultatProva("fall");
+        setUltimaProva(
+          " Última execució: " +
+            new Date().toLocaleString("ca-ES", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+        );
       })
       .then(() => {
         setObrirSnackbar(true);
@@ -83,6 +98,11 @@ export default function Peticio(props) {
           {!loading ? (
             <div className="text-peticio">
               <span className="nom-peticio">{nom}</span>
+              {ultimaProva ? (
+                <span className="timestamp"> ( {ultimaProva} ) </span>
+              ) : (
+                ""
+              )}
             </div>
           ) : (
             ""

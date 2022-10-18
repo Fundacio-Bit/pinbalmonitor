@@ -36,10 +36,12 @@ Estils bàsic
 .text-peticio {
     height: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     padding-left: 4%;
 }
+
 
 .text-peticio span {
     z-index: 1;
@@ -47,6 +49,14 @@ Estils bàsic
     font-weight: 550;
 
 }
+
+.text-peticio .timestamp {
+    font-size: 0.7em;
+    align-self: flex-end;
+    margin-bottom: 5px;
+    margin-right: 4%;
+}
+
 
 .nombre-peticio-container {
     background-color: var(--color-primari);
@@ -121,7 +131,7 @@ Estils quan ratolí a sobre de la petició o aquesta está carregant
 .peticio:hover .text-peticio,
 .peticio:focus-visible .text-peticio {
     transition: all 0.3s ease-out;
-    color: var(--clar);
+    color: var(--blanc);
 }
 
 .peticio:hover .nombre-peticio-container,
@@ -226,6 +236,14 @@ Estils quan la petició falla
 
 .icone-output-fall {
     color: var(--primari-fall);
+
+
+}
+
+@media (max-width: 800px) {
+    .text-peticio .timestamp {
+        display: none;
+    }
 
 
 }
