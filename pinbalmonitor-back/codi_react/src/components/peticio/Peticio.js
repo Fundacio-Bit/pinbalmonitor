@@ -1,4 +1,5 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
+import { useSessionStorage } from "react-use";
 import "./Peticio.css";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import ReplayIcon from "@mui/icons-material/Replay";
@@ -6,10 +7,14 @@ import { CircularProgress, Tooltip } from "@mui/material";
 import SnackbarResultat from "../snackbarResultat/SnackbarResultat";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
+
 export default function Peticio(props) {
   const [loading, setLoading] = useState(false);
-
-  const [resultatProva, setResultatProva] = useState("");
+  const [resultatProva, setResultatProva] = useSessionStorage(
+    `${props.id}`,
+    ""
+  );
+  const [obrirSnackbar, setObrirSnackbar] = useState(false);
 
   /** Loading fals temporal per a poder fer els estils  de la petició quan carrega
    * TODO: Ha de ser esborrat quan tinguem el controlador.
@@ -19,11 +24,14 @@ export default function Peticio(props) {
     setLoading(true);
     fetch("https://reqres.in/api/users?delay=3")
       .then((res) => {
-        console.log(res)
+        console.log(res);
         setLoading(false);
         Math.random() < 0.5
           ? setResultatProva("exit")
           : setResultatProva("fall");
+      })
+      .then(() => {
+        setObrirSnackbar(true);
       })
       .catch((err) => {
         console.error(`Error: ${err.message}`);
@@ -93,7 +101,7 @@ export default function Peticio(props) {
         </button>
       </Tooltip>
       <SnackbarResultat
-        obert={resultatProva === "" ? false : true}
+        obert={obrirSnackbar}
         resultatProva={resultatProva}
         nom={nom}
         entorn={entorn}

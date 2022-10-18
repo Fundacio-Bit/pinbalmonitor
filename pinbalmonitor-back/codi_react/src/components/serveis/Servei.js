@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import OpcionsEntorn from "../opcionsEntorn/OpcionsEntorn";
 import Peticio from "../peticio/Peticio";
-import functions from '../helpers'
+import functions from "../helpers";
 import "./Servei.css";
 
 export default function Servei(props) {
@@ -21,18 +21,26 @@ export default function Servei(props) {
    **(la info s'agafa de serveis/data/dadesSeveis) i és pasada per props
    ** des de l'enrutador a través del component pare (layout):
    */
-  function renderitzarLlistaDePeticions(llistaPeticions) {
+  function renderitzarLlistaDePeticions(
+    llistaPeticions,
+    subservei /** paràmetre opcional */
+  ) {
     return llistaPeticions.map((peticio, index) => (
-      <Peticio entorn={entorn} servei={titolServei} key={`${peticio.nom} ${entorn}`} nombre={index + 1}{...peticio} />
+      <Peticio
+        entorn={entorn}
+        id={`${peticio.nom}${subservei ? (" " + subservei.nom) : ""} ${ entorn}`}
+        key={`${peticio.nom} ${entorn}`}
+        nombre={index + 1}
+        {...peticio}
+      />
     ));
   }
-  function renderitzarServeiSimple(){
+  function renderitzarServeiSimple() {
     let peticions = servei.peticions;
-      return (
-        <div className="peticions">
-          {renderitzarLlistaDePeticions(peticions)}
-        </div>)
-  };
+    return (
+      <div className="peticions">{renderitzarLlistaDePeticions(peticions)}</div>
+    );
+  }
 
   function renderitzarServeiAmbSubserveis() {
     let subserveis = servei.subserveis;
@@ -40,20 +48,30 @@ export default function Servei(props) {
       <div className="subservei" key={index}>
         <h2> {subservei.nom}</h2>
         <div className="peticions">
-        {renderitzarLlistaDePeticions(subservei.peticions)}
+          {renderitzarLlistaDePeticions(subservei.peticions, subservei)}
         </div>
-
       </div>
     ));
   }
   const renderitzarServei = () => {
-    return servei.subserveis ?  renderitzarServeiAmbSubserveis() : renderitzarServeiSimple()
+    return servei.subserveis
+      ? renderitzarServeiAmbSubserveis()
+      : renderitzarServeiSimple();
   };
 
   return (
     <div className="servei">
       <div className="superior">
-        <h1>{titolServei} - <span className={`text-entorn ${entorn==="proves" ? "text-proves" : "text-producció"}`}>{functions.capitalitzar(entorn)}</span></h1>
+        <h1>
+          {titolServei} -{" "}
+          <span
+            className={`text-entorn ${
+              entorn === "proves" ? "text-proves" : "text-producció"
+            }`}
+          >
+            {functions.capitalitzar(entorn)}
+          </span>
+        </h1>
         <OpcionsEntorn handleChange={handleChange} entorn={entorn} />
       </div>
       {renderitzarServei()}
