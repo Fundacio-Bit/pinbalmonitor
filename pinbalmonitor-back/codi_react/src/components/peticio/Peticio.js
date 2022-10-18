@@ -5,24 +5,31 @@ import ReplayIcon from "@mui/icons-material/Replay";
 import { CircularProgress, Tooltip } from "@mui/material";
 import SnackbarResultat from "../snackbarResultat/SnackbarResultat";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import ErrorIcon from '@mui/icons-material/Error';
-
+import ErrorIcon from "@mui/icons-material/Error";
 export default function Peticio(props) {
   const [loading, setLoading] = useState(false);
+
   const [resultatProva, setResultatProva] = useState("");
 
   /** Loading fals temporal per a poder fer els estils  de la petició quan carrega
    * TODO: Ha de ser esborrat quan tinguem el controlador.
    */
   function mockLoading() {
+    //fetch temporal per simular request -> resultat aleatori
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      /* Temporalment
-      Per fer sa prova d'una petició exitosa es fa a proves,
-       per fer sa prova d'un error es fa a producció"*/
-       Math.random() < 0.5 ? setResultatProva("exit") : setResultatProva("fall");
-    }, 2000);
+    fetch("https://reqres.in/api/users?delay=3")
+      .then((res) => {
+        console.log(res)
+        setLoading(false);
+        Math.random() < 0.5
+          ? setResultatProva("exit")
+          : setResultatProva("fall");
+      })
+      .catch((err) => {
+        console.error(`Error: ${err.message}`);
+        setResultatProva("");
+        setLoading(false);
+      });
   }
 
   function iconePlayOReplay() {
@@ -36,9 +43,11 @@ export default function Peticio(props) {
   function iconeResultat() {
     if (resultatProva && !loading)
       return resultatProva === "exit" ? (
-        <CheckCircleIcon className="icone-output-exit icone-output"> </CheckCircleIcon>
+        <CheckCircleIcon className="icone-output-exit icone-output">
+          {" "}
+        </CheckCircleIcon>
       ) : (
-        <ErrorIcon  className="icone-output-fall icone-output"></ErrorIcon>
+        <ErrorIcon className="icone-output-fall icone-output"></ErrorIcon>
       );
   }
 
@@ -47,10 +56,6 @@ export default function Peticio(props) {
   // entorn -> variable que servirà per saber quina petició es cridarà
   // en el controlador: la de producció o la de proves
 
-  useEffect(() => {
-    setResultatProva("");
-  }, [entorn, props.servei]);
-
   return (
     <div className="container-peticio">
       <Tooltip
@@ -58,36 +63,34 @@ export default function Peticio(props) {
         placement="left-start"
         title={`${loading ? "Executant..." : "Executar"}`}
       >
-          <button
-            onClick={mockLoading}
-            className={`peticio ${loading ? "loading" : ""} ${
-              resultatProva === "exit" ? "exit" : ""
-            } ${resultatProva === "fall" ? "fall" : ""}`}
-          >
-            <div className="nombre-peticio-container">
-              <span>{props.nombre}</span>
+        <button
+          onClick={mockLoading}
+          className={`peticio ${loading ? "loading" : ""} ${
+            resultatProva === "exit" ? "exit" : ""
+          } ${resultatProva === "fall" ? "fall" : ""}`}
+        >
+          <div className="nombre-peticio-container">
+            <span>{props.nombre}</span>
+          </div>
+          {!loading ? (
+            <div className="text-peticio">
+              <span className="nom-peticio">{nom}</span>
             </div>
-            {!loading ? (
-              <div className="text-peticio">
-                <span className="nom-peticio">{nom}</span>
-              </div>
-            ) : (
-              ""
-            )}
-            <div className="executar-boto">
-              {
-                // Si està carregant tindrem loader, si no, botó de play
-                loading ? (
-                  <CircularProgress style={{ color: "var(--blanc)" }} />
-                ) : (
-                  iconePlayOReplay()
-                )
-              }
-            </div>
-            {iconeResultat()}
-
-          </button>
-
+          ) : (
+            ""
+          )}
+          <div className="executar-boto">
+            {
+              // Si està carregant tindrem loader, si no, botó de play
+              loading ? (
+                <CircularProgress style={{ color: "var(--blanc)" }} />
+              ) : (
+                iconePlayOReplay()
+              )
+            }
+          </div>
+          {iconeResultat()}
+        </button>
       </Tooltip>
       <SnackbarResultat
         obert={resultatProva === "" ? false : true}

@@ -23,7 +23,7 @@ export default function Servei(props) {
    */
   function renderitzarLlistaDePeticions(llistaPeticions) {
     return llistaPeticions.map((peticio, index) => (
-      <Peticio entorn={entorn} servei={titolServei} key={index} nombre={index + 1}{...peticio} />
+      <Peticio entorn={entorn} servei={titolServei} key={`${peticio.nom} ${entorn}`} nombre={index + 1}{...peticio} />
     ));
   }
   function renderitzarServeiSimple(){
