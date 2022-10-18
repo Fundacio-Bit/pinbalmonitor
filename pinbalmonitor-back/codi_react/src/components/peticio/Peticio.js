@@ -80,7 +80,7 @@ export default function Peticio(props) {
   // en el controlador: la de producció o la de proves
 
   return (
-    <div className="container-peticio">
+    <li className="container-peticio">
       <Tooltip
         arrow
         placement="left-start"
@@ -127,6 +127,6 @@ export default function Peticio(props) {
         entorn={entorn}
         loading={loading}
       ></SnackbarResultat>
-    </div>
+    </li>
   );
 }

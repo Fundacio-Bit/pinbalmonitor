@@ -38,7 +38,7 @@ export default function Servei(props) {
   function renderitzarServeiSimple() {
     let peticions = servei.peticions;
     return (
-      <div className="peticions">{renderitzarLlistaDePeticions(peticions)}</div>
+      <ul className="peticions">{renderitzarLlistaDePeticions(peticions)}</ul>
     );
   }
 
@@ -47,9 +47,9 @@ export default function Servei(props) {
     return subserveis.map((subservei, index) => (
       <div className="subservei" key={index}>
         <h2> {subservei.nom}</h2>
-        <div className="peticions">
+        <ul className="peticions">
           {renderitzarLlistaDePeticions(subservei.peticions, subservei)}
-        </div>
+        </ul>
       </div>
     ));
   }
