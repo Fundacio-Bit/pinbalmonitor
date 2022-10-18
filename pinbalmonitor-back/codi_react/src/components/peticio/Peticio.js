@@ -80,7 +80,7 @@ export default function Peticio(props) {
   // en el controlador: la de producció o la de proves
 
   return (
-    <li className="container-peticio">
+    <li className="container-peticio" aria-label={props.id}>
       <Tooltip
         arrow
         placement="left-start"
