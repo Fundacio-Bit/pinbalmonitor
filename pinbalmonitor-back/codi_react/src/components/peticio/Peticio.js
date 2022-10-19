@@ -7,7 +7,7 @@ import { CircularProgress, Tooltip } from "@mui/material";
 import SnackbarResultat from "../snackbarResultat/SnackbarResultat";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
-
+import functions from "../helpers";
 export default function Peticio(props) {
   const [loading, setLoading] = useState(false);
   const [resultatProva, setResultatProva] = useSessionStorage(
@@ -93,11 +93,11 @@ export default function Peticio(props) {
           } ${resultatProva === "fall" ? "fall" : ""}`}
         >
           <div className="nombre-peticio-container">
-            <span>{props.nombre}</span>
+            <span>{props.nombre} </span>
           </div>
           {!loading ? (
             <div className="text-peticio">
-              <span className="nom-peticio">{nom}</span>
+              <span className="nom-peticio">{nom} ({functions.capitalitzar(entorn)})</span>
               {ultimaProva ? (
                 <span className="timestamp"> ( {ultimaProva} ) </span>
               ) : (
