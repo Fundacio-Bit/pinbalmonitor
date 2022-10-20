@@ -1,14 +1,3 @@
-:root {
-    --primari-exit: #3f983f;
-    --fosc-exit: #0e4927;
-    --clar-exit: #c0fec8;
-
-
-    --primari-fall: #f14646;
-    --fosc-fall: #590000;
-    --clar-fall: #fdcdc6;
-}
-
 /* 
 -----------------------------------------------------------------------
 Estils bàsic 
@@ -19,6 +8,10 @@ Estils bàsic
 
 }
 
+.peticio:not(:hover) .text-peticio span {
+    color: var(--color-text)
+}
+
 .peticio {
     margin-bottom: 40px;
     width: 100%;
@@ -26,7 +19,7 @@ Estils bàsic
     box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
     border-radius: 10px;
     position: relative;
-    background-color: var(--clar);
+    background-color: var(--fons-peticio);
     z-index: 0;
     font-family: 'Montserrat';
     font-size: 1rem;
@@ -77,7 +70,14 @@ Estils bàsic
 }
 
 .nombre-peticio-container span {
-    rotate: -45deg
+    rotate: -45deg;
+    color: var(--blanc);
+
+}
+
+.text-peticio {
+    color: var(--blanc);
+
 }
 
 .executar-icone {
@@ -128,8 +128,8 @@ Estils quan ratolí a sobre de la petició o aquesta está carregant
     cursor: pointer;
 }
 
-.peticio:hover .text-peticio,
-.peticio:focus-visible .text-peticio {
+.peticio:hover div.text-peticio,
+.peticio:focus-visible div.text-peticio {
     transition: all 0.3s ease-out;
     color: var(--blanc);
 }
@@ -137,7 +137,7 @@ Estils quan ratolí a sobre de la petició o aquesta está carregant
 .peticio:hover .nombre-peticio-container,
 .peticio:focus-visible .nombre-peticio-container,
 .loading .nombre-peticio-container {
-    background-color: var(--fosc);
+    background-color: var(--secundari);
     transition: all 0.5s ease-out;
 }
 
@@ -167,6 +167,7 @@ Estils quan la petició és exitosa
 */
 
 
+
 .peticio.exit .executar-boto {
     background-color: var(--primari-exit)
 }
@@ -178,16 +179,14 @@ Estils quan la petició és exitosa
 .peticio.exit:hover .nombre-peticio-container,
 .peticio.exit:focus-visible .nombre-peticio-container,
 .peticio.exit.loading .nombre-peticio-container {
-    background-color: var(--fosc-exit);
+    background-color: var(--secundari-exit);
 }
 
 .peticio.exit {
-    background-color: var(--clar-exit);
+    background-color: var(--fons-peticio-exit);
 }
 
-.peticio.exitext {
-    color: var(--fosc-exit);
-}
+
 
 .peticio.exit:hover .text-peticio,
 .peticio.fall:focus-visible .text-peticio {
@@ -218,16 +217,14 @@ Estils quan la petició falla
 .peticio.fall:hover .nombre-peticio-container,
 .peticio.fall:focus-visible .nombre-peticio-container,
 .peticio.fall.loading .nombre-peticio-container {
-    background-color: var(--fosc-fall);
+    background-color: var(--secundari-fall);
+
 }
 
 .peticio.fall {
-    background-color: var(--clar-fall);
+    background-color: var(--fons-peticio-fall);
 }
 
-.peticio.faltext {
-    color: var(--fosc-fall);
-}
 
 .peticio.fall:hover .text-peticio,
 .peticio.fall:focus-visible .text-peticio {

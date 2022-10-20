@@ -11,14 +11,16 @@ export default function OpcionsEntorn(props) {
   const { handleChange, entorn } = props;
 
   const radioStyles = {
+    color: "var(--color-text)",
     "&.Mui-checked": {
-      color: "var(--color-primari)",
+      color: "var(--color-radio)",
     },
   };
 
   const labelStyles = {
+    color: "var(--color-text)",
     "&.Mui-focused": {
-      color: "var(--color-primari)",
+      color: "var(--color-radio)",
     },
   };
 
@@ -36,6 +38,7 @@ export default function OpcionsEntorn(props) {
           onChange={handleChange}
         >
           <FormControlLabel
+            sx={{ color: "var(--color-text)" }}
             value="proves"
             control={
               <Radio
@@ -51,6 +54,7 @@ export default function OpcionsEntorn(props) {
             label="Proves"
           />
           <FormControlLabel
+            sx={{ color: "var(--color-text)" }}
             value="producio"
             control={
               <Radio

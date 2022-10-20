@@ -1,5 +1,5 @@
 header.barraSuperior {
-    background-color: var(--fosc);
+    background-color: var(--secundari);
     margin-bottom: 30px;
 }
 
@@ -12,6 +12,10 @@ header.barraSuperior {
     }
 }
 
+header span, header div, header h1 {
+    color: var(--blanc)
+}
+
 
 /* Estil per a marcar l'element del menú de la pàgina actual:*/
 
@@ -20,6 +24,7 @@ header.barraSuperior {
     background-color: rgba(249, 249, 249, 0.171);
 
 }
+
 /* Animació hover per als items del menú :*/
 
 .MuiBox-root a:hover:before {
@@ -42,5 +47,5 @@ header.barraSuperior {
 }
 
 .MuiBox-root a {
-    margin-left:3px
+    margin-left: 3px
 }

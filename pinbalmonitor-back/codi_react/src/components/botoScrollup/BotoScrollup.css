@@ -1,7 +1,7 @@
 button#scroll-up {
 
     background-color: var(--color-primari);
-    border: solid 3px var(--blanc);
+    border: solid 3px var(--fons);
     height: 40px;
     width: 40px;
     border-radius: 50%;
@@ -17,13 +17,13 @@ button#scroll-up {
 }
 
 button#scroll-up:hover, button#scroll-up:focus-visible {
-    background-color: var(--fosc);
+    background-color: var(--secundari);
     outline: none;
 
 }
 
 button#scroll-up:hover .icone-scroll-up, button#scroll-up:focus-visible .icone-scroll-up {
-    color: rgb(218, 215, 215);
+    color: var(--blanc);
 
 }
 

@@ -23,16 +23,23 @@
 
     background-color: rgba(255, 208, 0, 0.21);
     border-color: #eebe306e;
-    color: #140800;
+    color: var(--color-text)
 }
 
 .text-producció {
     background-color: #00ffa91c;
     border-color: #3095ee6e;
-    color: #000223;
+    color: var(--color-text)
 
 }
 
 ul.peticions {
     list-style: none;
+    padding-left:0;
+
+    ;
+}
+
+h1, h2, h1 span {
+    color: var(--color-text)
 }

@@ -45,6 +45,7 @@ export default function SnackbarResultat(props) {
   return (
     <div>
       <Snackbar
+      className="snackbar"
         open={obert}
         autoHideDuration={3000}
         onClose={tancar}

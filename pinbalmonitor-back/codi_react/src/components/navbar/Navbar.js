@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { NavLink } from "react-router-dom";
 import { rutesServeis } from "../../router/rutesServeis";
 import "./Navbar.css";
+import ToggleColor from "../toggleColor/ToggleColor";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -86,7 +87,7 @@ const Navbar = () => {
                   key={pagina.nomAMenu}
                   onClick={handleCloseNavMenu}
                 >
-                  <Typography color="var(--fosc)" textAlign="center">
+                  <Typography color="var(--secundari)" textAlign="center">
                     {pagina.nomAMenu}
                   </Typography>
                 </MenuItem>
@@ -127,6 +128,11 @@ const Navbar = () => {
                 {pagina.nomAMenu}
               </Button>
             ))}
+          </Box>
+          <Box sx={{  display: { md: "flex" } }}>
+            <ToggleColor
+              sx={{ my: 2, color: "white", display: "block" }}
+            ></ToggleColor>
           </Box>
 
           {/*<Box sx={{ flexGrow: 0 }}>
