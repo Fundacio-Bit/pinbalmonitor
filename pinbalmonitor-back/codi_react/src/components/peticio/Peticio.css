@@ -8,7 +8,8 @@ Estils bàsic
 
 }
 
-.peticio:not(:hover) .text-peticio span {
+.peticio:not(:hover) .text-peticio span 
+.peticio:not(:focus-visible) .text-peticio span{
     color: var(--color-text)
 }
 
@@ -131,7 +132,7 @@ Estils quan ratolí a sobre de la petició o aquesta está carregant
 .peticio:hover div.text-peticio,
 .peticio:focus-visible div.text-peticio {
     transition: all 0.3s ease-out;
-    color: var(--blanc);
+    color: var(--blanc) !important;
 }
 
 .peticio:hover .nombre-peticio-container,
