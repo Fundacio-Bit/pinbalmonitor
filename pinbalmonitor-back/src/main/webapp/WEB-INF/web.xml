@@ -104,6 +104,26 @@
         </web-resource-collection>
         <auth-constraint />
     </security-constraint>
+
+
+    <!--security-constraint>
+        <display-name>No permetre accés directe als recursos</display-name>
+        <web-resource-collection>
+            <web-resource-name>Accés directe a recursos</web-resource-name>
+            <url-pattern>/css/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint />
+    </security-constraint>
+
+
+    <security-constraint>
+        <display-name>No permetre accés directe als recursos</display-name>
+        <web-resource-collection>
+            <web-resource-name>Accés directe a recursos</web-resource-name>
+            <url-pattern>/js/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint />
+    </security-constraint-->
     
     <security-constraint>
         <display-name>Permetre accés als recursos a través de JSF</display-name>
