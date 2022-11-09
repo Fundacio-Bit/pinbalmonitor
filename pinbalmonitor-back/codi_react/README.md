@@ -54,14 +54,14 @@ doc-react/servei.PNG">
    A la ruta src/components/serveis/data/dadesServeis.js crear la constant seguint l'estructura d'exemple.
 
 <p align="center">
-  <img alt="Exemple de com afegir dades d'un servei" src="dadesServeis-afegir.PNG">
+  <img alt="Exemple de com afegir dades d'un servei" src="doc-react/dadesServeis-afegir.png">
 </p>
 
 2. Exportar la constant creada al pas anterior:
 
 
 <p align="center">
-  <img alt="Exemple d'exportar la constant" src="export.PNG">
+  <img alt="Exemple d'exportar la constant" src="doc-react/export.PNG">
 </p>
 
 1. Afegir servei a l'enrutador per a crear la ruta i la opció en el menú:
@@ -69,21 +69,21 @@ doc-react/servei.PNG">
 
 
 <p align="center">
-  <img alt="Exemple d'afegir la ruta a la variable de dades de l'enrutador" src="enrutador-exemple.PNG">
+  <img alt="Exemple d'afegir la ruta a la variable de dades de l'enrutador" src="doc-react/enrutador-exemple.PNG">
 </p>
 Fet això l'enrutador directament crearà una ruta al path especificat que renderitzarà la vista Layout amb les dades del servei (especificades a src/components/serveis/data/dadesServeis.js)
 
 <p align="center">
-  <img alt="Com l'enrutador crea la vista" src="enrutador vista.PNG">
+  <img alt="Com l'enrutador crea la vista" src="doc-react/enrutador vista.png">
 </p>
 
 El Layout passarà la prop servei al component Servei, d'aquesta manera aquest coneix quin és el seu títol i quines són les seves peticions.
 <p align="center">
-  <img alt="Com el Layout renderitza el servei amb les dades corresponents" src="Layout servei.PNG">
+  <img alt="Com el Layout renderitza el servei amb les dades corresponents" src="doc-react/Layout servei.PNG">
 </p>
 
 Després d'haver seguit els passos el resultat de la vista de la ruta /exemple (la que s'ha especificat a la propietat path de l'enrutador) será:
 
 <p align="center">
-  <img alt="Resultat que quedaria seguint les pases de l'exemple" src="resultat-exemple.PNG">
+  <img alt="Resultat que quedaria seguint les pases de l'exemple" src="doc-react/resultat-exemple.PNG">
 </p>
