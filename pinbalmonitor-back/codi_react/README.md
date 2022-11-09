@@ -3,43 +3,43 @@
 
 <p align="center">
   <img width="50%" alt="Component Servei" src="
-doc-react/servei.png">
+doc-react/servei.PNG">
 </p>
   
 - Petició. Component fill de serveis. Té la propietat de nom i la d'entorn, que provenen de les dades de component pare, Servei. L'entorn servirà per saber a quina funció del controlador cridar. Té 'estat de loading (boleà), resultatProva ("èxit" o "fall") i data d'última execució.
   
  <p align="center">
-  <img width="50%" alt="Component Petició" src="doc-react/peticio.png">
+  <img width="50%" alt="Component Petició" src="doc-react/peticio.PNG">
 </p>
 
 - Opcions Entorn. Component fill de Servei. Serveix per cambiar la propietat d'entorn a "proves" o a "producció". Aquesta propietat forma part del component servei i és passada a totes les peticions depenents del servei.
   
  <p align="center">
-  <img alt="Component Opcions Entorn" src="doc-react/opcionsEntorn.png">
+  <img alt="Component Opcions Entorn" src="doc-react/opcionsEntorn.PNG">
 </p>
 
 - Snackbar Resultat. Té la propietat boleana d'obert. Aquestá és posada a true per part del component pare Petició quan la petició deixa d'estar carregant. El text i color canvien en funció de si la propietat resultatProva (que és passada per props a través del component pare Petició) és "èxit" o "fall"
   
  <p align="center">
-  <img  width="50%" alt="Component Snackbar resultat" src="doc-react/snackbar-resultat.png">
+  <img  width="50%" alt="Component Snackbar resultat" src="doc-react/snackbar-resultat.PNG">
 </p>
 
 - Navbar. Conté el menú de navegació. Es pinta el llistat de rutes importat des de  src/router/rutesServeis.js.
   
  <p align="center">
-  <img  width="50%" alt="Component Navbar" src="doc-react/navbar.png">
+  <img  width="50%" alt="Component Navbar" src="doc-react/navbar.PNG">
 </p>
 
 - Toggle Color canvia el tema de colors mitjaçant la propietat tema, que pot ser clar o fosc. Si el valor és "fosc" s'afageix la classe fosc a la pseudoclasse root del css i se'n aplica la paleta de colors corresponent (Layout.css).
   
 <p align="center">
-  <img alt="Component ToggleColor" src="doc-react/color.png">
+  <img alt="Component ToggleColor" src="doc-react/color.PNG">
 </p>
 
    - Botó Scroll up té la propietat booleana "visible" (canvia en funció de si l'usuari ha fer scroll cap avall) i el manejador d'events ScrollToTop per a què en clicar en el component, la pàgina es vegi des del principi.
   
 <p align="center">
-  <img alt="Botó Scrollup" src="doc-react/scrollUp.png">
+  <img alt="Botó Scrollup" src="doc-react/scrollUp.PNG">
 </p>
 # Estructura de l'aplicació
 
