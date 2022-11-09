@@ -41,6 +41,7 @@ doc-react/servei.PNG">
 <p align="center">
   <img alt="Botó Scrollup" src="doc-react/scrollUp.PNG">
 </p>
+
 # Estructura de l'aplicació
 
 <p align="center">
@@ -54,7 +55,7 @@ doc-react/servei.PNG">
    A la ruta src/components/serveis/data/dadesServeis.js crear la constant seguint l'estructura d'exemple.
 
 <p align="center">
-  <img alt="Exemple de com afegir dades d'un servei" src="doc-react/dadesServeis-afegir.png">
+  <img alt="Exemple de com afegir dades d'un servei" src="doc-react/dadesServeis-afegir.PNG">
 </p>
 
 2. Exportar la constant creada al pas anterior:
