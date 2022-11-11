@@ -1,0 +1,70 @@
+:root:not(.fosc) {
+       /* PALETA COLORS CLAR*/
+       /* idea inicial de paleta de colors -> pendent canviar*/
+       --color-primari: #6E3667;
+       --fons-peticio: #fff6f1;
+       --secundari: #391e2d;
+       --blanc: rgb(254, 249, 255);
+       --fons: var(--blanc);
+       --color-text: black;
+       --primari-exit: #3f983f;
+       --secundari-exit: #0e4927;
+       --fons-peticio-exit: #c0fec8;
+       --primari-fall: #f14646;
+       --secundari-fall: #590000;
+       --fons-peticio-fall: #fdcdc6;
+       --color-radio: var(--color-primari);
+
+}
+
+:root.fosc {
+       /* PALETA COLORS FOSC*/
+       /* idea inicial de paleta de colors -> pendent canviar*/
+       --color-primari: #2f4897;
+       --fons-peticio: #131316;
+       --secundari: #0f0f13;
+       --fons: #2a2a30;
+       --blanc: rgb(254, 249, 255);
+       --color-text: var(--blanc);
+       --primari-exit: #086d08;
+       --secundari-exit: #022512;
+       --fons-peticio-exit: #181f18;
+       --primari-fall: #d31717;
+       --secundari-fall: #330505;
+       --fons-peticio-fall: #1f1a1a;
+       --color-radio: #9eaef8;
+
+
+
+}
+
+.servei {
+       margin-left: 10%;
+       margin-right: 10%;
+}
+
+.snackbar span, .snackbar div {
+       color: var(--blanc);
+}
+
+
+body {
+       font-family: 'Montserrat', sans-serif;
+       background-color: var(--fons);
+}
+
+
+h1 {
+       font-family: 'Roboto', sans-serif;
+       font-weight: 400;
+       text-transform: capitalize;
+}
+
+h2 {
+       font-family: 'Roboto', sans-serif;
+       font-weight: 400;
+       text-transform: capitalize;
+
+
+
+}

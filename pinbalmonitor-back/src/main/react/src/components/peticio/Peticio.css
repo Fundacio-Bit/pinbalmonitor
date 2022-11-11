@@ -1,0 +1,247 @@
+/* 
+-----------------------------------------------------------------------
+Estils bàsic 
+-----------------------------------------------------------------------
+*/
+.container-peticio {
+    width: 100%;
+
+}
+
+.peticio:not(:hover):not(:focus-visible) .text-peticio span 
+{
+    color: var(--color-text)
+}
+
+.peticio {
+    margin-bottom: 40px;
+    width: 100%;
+    height: 90px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+    border-radius: 10px;
+    position: relative;
+    background-color: var(--fons-peticio);
+    z-index: 0;
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    border: none
+}
+
+.text-peticio {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 4%;
+}
+
+
+.text-peticio span {
+    z-index: 1;
+    font-size: 1.1em;
+    font-weight: 550;
+
+}
+
+.text-peticio .timestamp {
+    font-size: 0.7em;
+    align-self: flex-end;
+    margin-bottom: 5px;
+    margin-right: 4%;
+}
+
+
+.nombre-peticio-container {
+    background-color: var(--color-primari);
+    width: 40px;
+    height: 40px;
+    color: var(--blanc);
+    font-weight: bolder;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: absolute;
+    top: -16px;
+    left: 10px;
+    z-index: 1;
+    rotate: 45deg;
+}
+
+.nombre-peticio-container span {
+    rotate: -45deg;
+    color: var(--blanc);
+
+}
+
+.text-peticio {
+    color: var(--blanc);
+
+}
+
+.executar-icone {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+
+.peticio .executar-boto {
+    border-radius: 0 10px 0 50px;
+    height: 40px;
+    width: 40px;
+    padding-left: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: var(--color-primari);
+    color: var(--blanc);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: -1;
+}
+
+
+.icone-output {
+    position: absolute;
+    right: 5px;
+    bottom: -10px;
+    z-index: 1;
+    border-radius: 50%;
+    font-size: 1.6em;
+    background-color: var(--blanc);
+}
+
+
+/*
+-----------------------------------------------------------------------
+Estils quan ratolí a sobre de la petició o aquesta está carregant
+-----------------------------------------------------------------------
+*/
+.peticio:focus-visible {
+    outline: none;
+}
+
+.peticio:hover {
+    transition: color 0.3s ease-out;
+    cursor: pointer;
+}
+
+.peticio:hover div.text-peticio,
+.peticio:focus-visible div.text-peticio {
+    transition: all 0.3s ease-out;
+    color: var(--blanc) !important;
+}
+
+.peticio:hover .nombre-peticio-container,
+.peticio:focus-visible .nombre-peticio-container,
+.loading .nombre-peticio-container {
+    background-color: var(--secundari);
+    transition: all 0.5s ease-out;
+}
+
+.peticio:hover .executar-boto,
+.peticio:focus-visible .executar-boto,
+.loading .executar-boto {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    transition: all 0.3s ease-out;
+    border-radius: inherit;
+}
+
+.peticio:hover .executar-icone,
+.peticio:focus-visible .executar-icone,
+.loading .executar-icone {
+    top: 33px;
+    transition: all 0.3s ease-out;
+
+}
+
+
+/*
+-----------------------------------------------------------------------
+Estils quan la petició és exitosa
+-----------------------------------------------------------------------
+*/
+
+
+
+.peticio.exit .executar-boto {
+    background-color: var(--primari-exit)
+}
+
+.peticio.exit .nombre-peticio-container {
+    background-color: var(--primari-exit);
+}
+
+.peticio.exit:hover .nombre-peticio-container,
+.peticio.exit:focus-visible .nombre-peticio-container,
+.peticio.exit.loading .nombre-peticio-container {
+    background-color: var(--secundari-exit);
+}
+
+.peticio.exit {
+    background-color: var(--fons-peticio-exit);
+}
+
+
+
+.peticio.exit:hover .text-peticio,
+.peticio.fall:focus-visible .text-peticio {
+    color: var(--blanc);
+}
+
+
+.icone-output-exit {
+    color: var(--primari-exit);
+}
+
+
+/*
+-----------------------------------------------------------------------
+Estils quan la petició falla
+-----------------------------------------------------------------------
+*/
+
+
+.peticio.fall .executar-boto {
+    background-color: var(--primari-fall)
+}
+
+.peticio.fall .nombre-peticio-container {
+    background-color: var(--primari-fall);
+}
+
+.peticio.fall:hover .nombre-peticio-container,
+.peticio.fall:focus-visible .nombre-peticio-container,
+.peticio.fall.loading .nombre-peticio-container {
+    background-color: var(--secundari-fall);
+
+}
+
+.peticio.fall {
+    background-color: var(--fons-peticio-fall);
+}
+
+
+.peticio.fall:hover .text-peticio,
+.peticio.fall:focus-visible .text-peticio {
+    color: var(--blanc);
+}
+
+.icone-output-fall {
+    color: var(--primari-fall);
+
+
+}
+
+@media (max-width: 800px) {
+    .text-peticio .timestamp {
+        display: none;
+    }
+
+
+}
