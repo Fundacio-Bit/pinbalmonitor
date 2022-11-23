@@ -3,15 +3,20 @@ import {
   Route,
   Routes,
   Navigate,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import React from "react";
-import Layout from "../views/layoutServeis/Layout";
-import { rutesServeis } from "./rutesServeis";
+import React from 'react';
+import Layout from '../views/layoutServeis/Layout';
+import rutesServeis from './rutesServeis';
 
-let rutaLandingPage = rutesServeis[0].path;
-let elementRutesAServeis = rutesServeis.map((ruta, index) => (
-  <Route key={index} path={ruta.path} exact element={<Layout servei={ruta.servei} />} />
+const rutaLandingPage = rutesServeis[0].path;
+const elementRutesAServeis = rutesServeis.map((ruta) => (
+  <Route
+    key={ruta.servei.titolServei}
+    path={ruta.path}
+    exact
+    element={<Layout servei={ruta.servei} />}
+  />
 ));
 
 export default function Enrutador() {
@@ -21,7 +26,7 @@ export default function Enrutador() {
         <Routes>
           <Route
             path="/"
-            element={<Navigate to={rutaLandingPage} replace={true} />}
+            element={<Navigate to={rutaLandingPage} replace />}
           />
           {elementRutesAServeis}
         </Routes>

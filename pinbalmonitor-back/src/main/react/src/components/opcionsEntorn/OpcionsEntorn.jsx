@@ -1,26 +1,27 @@
-import React from "react";
+import React from 'react';
 import {
   Radio,
   FormControl,
   FormLabel,
   RadioGroup,
   FormControlLabel,
-} from "@mui/material";
+} from '@mui/material';
+import PropTypes from 'prop-types';
 
 export default function OpcionsEntorn(props) {
   const { handleChange, entorn } = props;
 
   const radioStyles = {
-    color: "var(--color-text)",
-    "&.Mui-checked": {
-      color: "var(--color-radio)",
+    color: 'var(--color-text)',
+    '&.Mui-checked': {
+      color: 'var(--color-radio)',
     },
   };
 
   const labelStyles = {
-    color: "var(--color-text)",
-    "&.Mui-focused": {
-      color: "var(--color-radio)",
+    color: 'var(--color-text)',
+    '&.Mui-focused': {
+      color: 'var(--color-radio)',
     },
   };
 
@@ -28,7 +29,7 @@ export default function OpcionsEntorn(props) {
     <div onChange={() => handleChange}>
       <FormControl>
         <FormLabel id="demo-controlled-radio-buttons-group" sx={labelStyles}>
-          Seleccioni l'entorn
+          Seleccioni l`&lsquo;`entorn
         </FormLabel>
         <RadioGroup
           row
@@ -38,35 +39,35 @@ export default function OpcionsEntorn(props) {
           onChange={handleChange}
         >
           <FormControlLabel
-            sx={{ color: "var(--color-text)" }}
+            sx={{ color: 'var(--color-text)' }}
             value="proves"
-            control={
+            control={(
               <Radio
                 sx={radioStyles}
                 type="radio"
-                checked={entorn === "proves"}
+                checked={entorn === 'proves'}
                 value="proves"
                 name="entorn"
                 size="small"
                 onChange={handleChange}
               />
-            }
+            )}
             label="Proves"
           />
           <FormControlLabel
-            sx={{ color: "var(--color-text)" }}
+            sx={{ color: 'var(--color-text)' }}
             value="producio"
-            control={
+            control={(
               <Radio
                 sx={radioStyles}
                 type="radio"
-                checked={entorn === "producció"}
+                checked={entorn === 'producció'}
                 value="producció"
                 name="entorn"
                 size="small"
                 onChange={handleChange}
               />
-            }
+            )}
             label="Producció"
           />
         </RadioGroup>
@@ -74,3 +75,8 @@ export default function OpcionsEntorn(props) {
     </div>
   );
 }
+
+OpcionsEntorn.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  entorn: PropTypes.oneOf(['proves', 'produccio']).isRequired,
+};
