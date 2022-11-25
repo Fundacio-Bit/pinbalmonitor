@@ -8,6 +8,7 @@
 .superior {
     display: flex;
     justify-content: space-between;
+    flex-flow: row wrap;
 }
 
 .text-entorn {
@@ -40,6 +41,10 @@ ul.peticions {
     ;
 }
 
-h1, h2, h1 span {
-    color: var(--color-text)
+.servei h1, h2, h1 span {
+    color: var(--color-text);
+}
+
+.servei h2 {
+    margin-bottom: 20px;
 }

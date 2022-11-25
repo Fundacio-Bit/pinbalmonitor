@@ -39,8 +39,8 @@
 }
 
 .servei {
-       margin-left: 10%;
-       margin-right: 10%;
+       margin-left: 20px;
+       margin-right: 20px;
 }
 
 .snackbar span, .snackbar div {
@@ -49,7 +49,6 @@
 
 
 body {
-       font-family: 'Montserrat', sans-serif;
        background-color: var(--fons);
 }
 

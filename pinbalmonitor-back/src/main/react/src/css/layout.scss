@@ -39,8 +39,8 @@
 }
 
 .servei {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .snackbar span, .snackbar div {
@@ -49,7 +49,6 @@
 
 
 body {
-    font-family: 'Montserrat', sans-serif;
     background-color: var(--fons);
 }
 
@@ -58,12 +57,15 @@ h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     text-transform: capitalize;
+    font-size: 2rem;
 }
 
 h2 {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     text-transform: capitalize;
+    font-size: 1.5rem;
+
 
 
 

@@ -22,7 +22,6 @@ Estils bàsic
     position: relative;
     background-color: var(--fons-peticio);
     z-index: 0;
-    font-family: 'Montserrat';
     font-size: 1rem;
     border: none
 }
@@ -40,7 +39,6 @@ Estils bàsic
 .text-peticio span {
     z-index: 1;
     font-size: 1.1em;
-    font-weight: 550;
 
 }
 
@@ -83,8 +81,8 @@ Estils bàsic
 
 .executar-icone {
     position: absolute;
-    top: 8px;
-    right: 10px;
+    top: 6px;
+    right: 4px;
 }
 
 .peticio .executar-boto {
