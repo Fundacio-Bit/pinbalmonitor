@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import React from 'react';
 import {
   Radio,
@@ -29,7 +30,7 @@ export default function OpcionsEntorn(props) {
     <div onChange={() => handleChange}>
       <FormControl>
         <FormLabel id="demo-controlled-radio-buttons-group" sx={labelStyles}>
-          Seleccioni l`&lsquo;`entorn
+          Seleccioni l'entorn
         </FormLabel>
         <RadioGroup
           row
