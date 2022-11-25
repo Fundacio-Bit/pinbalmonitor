@@ -1,10 +1,11 @@
 import React from 'react';
-import Enrutador from '../router/Enrutador';
+import Layout from '../views/layoutServeis/Layout';
+import * as peticions from './serveis/data/dadesServeis';
 
 export default function App() {
     return (
       <div className="App">
-        <Enrutador />
+        <Layout servei={peticions.dadesPadro} />
       </div>
     );
 }
