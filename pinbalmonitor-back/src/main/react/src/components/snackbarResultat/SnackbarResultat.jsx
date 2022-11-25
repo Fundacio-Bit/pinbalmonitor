@@ -1,72 +1,65 @@
-import * as React from 'react';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-import { useEffect } from 'react';
-import PropTypes from 'prop-types';
-
+/* eslint-disable */ 
+import * as React from "react";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import { useEffect } from "react";
 export default function SnackbarResultat(props) {
-  const {
-    resultatProva, entorn, loading, nom, obrir,
-  } = props;
-  const nomPeticio = nom;
-  const [obert, setObert] = React.useState(obrir);
+  let nomPeticio = props.nom;
+  let resultatProva = props.resultatProva;
+  let entorn = props.entorn;
+  let loading = props.loading;
+  const [obert, setObert] = React.useState(props.obert);
 
   useEffect(() => {
     // Obrir cada vegada que la petició acabi de carregar (és a dir quan s'hagi executat)
     if (loading === false) {
-      setObert(obert);
+      setObert(props.obert);
     }
-  }, [obert, loading]);
+  }, [props.obert, loading]);
 
-  const Alert = React.forwardRef((ref) => <MuiAlert elevation={6} ref={ref} variant="filled" entorn nom resultatProva />);
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   const tancar = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setObert(false);
   };
 
   function getTextResultat() {
-    if (resultatProva === 'exit') {
+    if (resultatProva === "exit") {
       return `La prova de la petició ${nomPeticio} ha estat exitosa en l'entorn de ${entorn}. 
       El servei està funcionant
     `;
     }
-    if (resultatProva === 'fall') {
+    if (resultatProva === "fall") {
       return `La prova de la petició ${nomPeticio} ha fallat l'entorn de ${entorn}.
         És possible que el servei no estigui funcionant. 
     `;
-    }
+    } else {
       return `Error intern amb la prova. 
 `;
+    }
   }
   return (
     <div>
       <Snackbar
-        className="snackbar"
+      className="snackbar"
         open={obert}
         autoHideDuration={3000}
         onClose={tancar}
       >
         <Alert
           onClose={tancar}
-          severity={`${resultatProva === 'exit' ? 'success' : 'error'}`}
-          sx={{ width: '100%' }}
+          severity={`${resultatProva === "exit" ? "success" : "error"}`}
+          sx={{ width: "100%" }}
         >
-          {' '}
+          {" "}
           {getTextResultat()}
         </Alert>
       </Snackbar>
     </div>
   );
 }
-
-SnackbarResultat.propTypes = {
-  entorn: PropTypes.oneOf(['proves', 'produccio']).isRequired,
-  nom: PropTypes.string.isRequired,
-  resultatProva: PropTypes.oneOf(['exit', 'fall']).isRequired,
-  loading: PropTypes.bool.isRequired,
-  obrir: PropTypes.bool.isRequired,
-
-};
