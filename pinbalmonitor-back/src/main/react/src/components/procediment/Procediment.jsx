@@ -24,12 +24,12 @@ export default function Procediment(props) {
    */
   function renderitzarLlistaDeServeis(
     llistaServeis,
-    subservei /** paràmetre opcional */
+    seccio /** paràmetre opcional */
   ) {
     return llistaServeis.map((s, index) => (
       <Servei
         entorn={entorn}
-        id={`${s.nom}${subservei ? (" " + subservei.nom) : ""} ${entorn}`}
+        id={`${s.nom}${seccio ? (" " + seccio.nom) : ""} ${entorn}`}
         key={`${s.nom} ${entorn}`}
         nombre={index + 1}
         {...s}
@@ -43,20 +43,20 @@ export default function Procediment(props) {
     );
   }
 
-  function renderitzarProcedimentAmbSubserveis() {
-    let subserveis = procediment.subserveis;
-    return subserveis.map((subservei, index) => (
-      <div className="subservei" key={index}>
-        <h2> {subservei.nom}</h2>
+  function renderitzarProcedimentAmbSeccions() {
+    let seccions = procediment.seccions;
+    return seccions.map((s, index) => (
+      <div className="seccio" key={index}>
+        <h2> {s.nom}</h2>
         <ul className="serveis">
-          {renderitzarLlistaDeServeis(subservei.serveis, subservei)}
+          {renderitzarLlistaDeServeis(s.serveis, s)}
         </ul>
       </div>
     ));
   }
   const renderitzarProcediment = () => {
-    return procediment.subserveis
-      ? renderitzarProcedimentAmbSubserveis()
+    return procediment.seccions
+      ? renderitzarProcedimentAmbSeccions()
       : renderitzarProcedimentSimple();
   };
 

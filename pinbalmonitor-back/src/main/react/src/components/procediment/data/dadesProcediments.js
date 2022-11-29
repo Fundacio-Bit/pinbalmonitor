@@ -39,7 +39,7 @@ const dadesFamiliaNombrosa = {
 const dadesPadro = {
   // Pendent -> encara no ho actualitz perquè pertany a un altre issue
   titol: 'Serveis de padró municipal',
-  subserveis: [
+  seccions: [
     {
       nom: 'Consulta de padró històric',
       serveis: [
