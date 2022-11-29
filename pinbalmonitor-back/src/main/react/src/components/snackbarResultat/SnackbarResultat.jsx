@@ -4,7 +4,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useEffect } from "react";
 export default function SnackbarResultat(props) {
-  let nomPeticio = props.nom;
+  let nomServei = props.nom;
   let resultatProva = props.resultatProva;
   let entorn = props.entorn;
   let loading = props.loading;
@@ -30,12 +30,12 @@ export default function SnackbarResultat(props) {
 
   function getTextResultat() {
     if (resultatProva === "exit") {
-      return `La prova de la petició ${nomPeticio} ha estat exitosa en l'entorn de ${entorn}. 
+      return `La prova de la petició a ${nomServei} ha estat exitosa en l'entorn de ${entorn}. 
       El servei està funcionant
     `;
     }
     if (resultatProva === "fall") {
-      return `La prova de la petició ${nomPeticio} ha fallat l'entorn de ${entorn}.
+      return `La prova de la petició a ${nomServei} ha fallat l'entorn de ${entorn}.
         És possible que el servei no estigui funcionant. 
     `;
     } else {

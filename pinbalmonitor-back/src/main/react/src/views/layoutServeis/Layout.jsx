@@ -3,12 +3,12 @@ import React, {useState} from 'react';
 import Procediment from '../../components/Procediment/Procediment';
 import './Layout.css';
 import Menu from '../../components/menu/Menu'
-import * as peticions from '../../components/procediment/data/dadesProcediments';
+import * as procediments from '../../components/procediment/data/dadesProcediments';
 
 
 export default function Layout() {
 
-  const [procediment, setProcediment] = useState(peticions.dadesServeisPropis);
+  const [procediment, setProcediment] = useState(procediments.dadesServeisPropis);
 
   function renderitzarNouProcediment (procediment) {
     setProcediment(procediment)

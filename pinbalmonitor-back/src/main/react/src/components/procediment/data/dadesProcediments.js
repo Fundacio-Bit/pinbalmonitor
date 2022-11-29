@@ -1,7 +1,7 @@
 const dadesFuncionamentPinbal = {
   titol: 'Validar el funcionament de PINBAL',
 
-  peticions: [
+  serveis: [
     { nom: "Petició a un servei intermediat de l'estat" },
     { nom: 'Petició a un servei  oferit pel Govern' },
     {
@@ -14,7 +14,7 @@ const dadesFuncionamentPinbal = {
 
 const dadesServeisPropis = {
   titol: 'Validar serveis propis del GOIB',
-  peticions: [
+  serveis: [
     {
       nom: 'Consulta de servei de Discapacitat',
     },
@@ -30,7 +30,7 @@ const dadesServeisPropis = {
 
 const dadesFamiliaNombrosa = {
   titol: 'Validar emissors de família nombrosa',
-  peticions: [
+  serveis: [
     { nom: 'Consulta de família nombrosa - Mallorca' },
     { nom: 'Consulta de família nombrosa - Menorca' },
   ],
@@ -42,7 +42,7 @@ const dadesPadro = {
   subserveis: [
     {
       nom: 'Consulta de padró històric',
-      peticions: [
+      serveis: [
         { nom: "Ajuntament d'Algaida" },
         { nom: 'Ajuntament de Palma' },
         { nom: 'Ajuntament de Calvià' },
@@ -51,7 +51,7 @@ const dadesPadro = {
     },
     {
       nom: 'Consulta de padró de convivència',
-      peticions: [
+      serveis: [
         { nom: "Ajuntament d'Algaida" },
         { nom: 'Ajuntament de Palma' },
         { nom: 'Ajuntament de Calvià' },

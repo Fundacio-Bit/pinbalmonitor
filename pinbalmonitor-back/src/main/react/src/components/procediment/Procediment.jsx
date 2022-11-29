@@ -1,7 +1,7 @@
 /* eslint-disable */ 
 import  React, { useState } from "react";
 import OpcionsEntorn from "../opcionsEntorn/OpcionsEntorn";
-import Peticio from "../peticio/Peticio";
+import Servei from "../servei/Servei";
 import functions from "../helpers";
 import "./Procediment.css";
 
@@ -18,28 +18,28 @@ export default function Procediment(props) {
     setEntorn(e.target.value);
   }
 
-  /* Renderitzar totes les peticions que pertanyen procediment
+  /* Renderitzar tots els serveis que pertanyen procediment
    **(la info s'agafa de procediment/data/dadesSeveis) i és pasada per props
    ** des de l'enrutador a través del component pare (layout):
    */
-  function renderitzarLlistaDePeticions(
-    llistaPeticions,
+  function renderitzarLlistaDeServeis(
+    llistaServeis,
     subservei /** paràmetre opcional */
   ) {
-    return llistaPeticions.map((peticio, index) => (
-      <Peticio
+    return llistaServeis.map((s, index) => (
+      <Servei
         entorn={entorn}
-        id={`${peticio.nom}${subservei ? (" " + subservei.nom) : ""} ${entorn}`}
-        key={`${peticio.nom} ${entorn}`}
+        id={`${s.nom}${subservei ? (" " + subservei.nom) : ""} ${entorn}`}
+        key={`${s.nom} ${entorn}`}
         nombre={index + 1}
-        {...peticio}
+        {...s}
       />
     ));
   }
   function renderitzarProcedimentSimple() {
-    let peticions = procediment.peticions;
+    let serveis = procediment.serveis;
     return (
-      <ul className="peticions">{renderitzarLlistaDePeticions(peticions)}</ul>
+      <ul className="peticions">{renderitzarLlistaDeServeis(serveis)}</ul>
     );
   }
 
@@ -49,7 +49,7 @@ export default function Procediment(props) {
       <div className="subservei" key={index}>
         <h2> {subservei.nom}</h2>
         <ul className="peticions">
-          {renderitzarLlistaDePeticions(subservei.peticions, subservei)}
+          {renderitzarLlistaDeServeis(subservei.serveis, subservei)}
         </ul>
       </div>
     ));

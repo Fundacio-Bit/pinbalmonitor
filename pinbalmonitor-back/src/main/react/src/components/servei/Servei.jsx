@@ -1,7 +1,7 @@
 /* eslint-disable */ 
 import  React, { useState } from "react";
 import { useSessionStorage } from "react-use";
-import "./Peticio.css";
+import "./Servei.css";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { CircularProgress, Tooltip } from "@mui/material";
@@ -9,7 +9,10 @@ import SnackbarResultat from "../snackbarResultat/SnackbarResultat";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import functions from "../helpers";
-export default function Peticio(props) {
+
+
+export default function Servei(props) {
+
   const [loading, setLoading] = useState(false);
   const [resultatProva, setResultatProva] = useSessionStorage(
     `resultat ${props.id}`, ""
