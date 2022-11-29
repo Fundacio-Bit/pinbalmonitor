@@ -61,7 +61,7 @@ export default function Procediment(props) {
   };
 
   return (
-    <div className="servei">
+    <div className="procediment">
       <div className="superior">
         <h1>
           {titol} -{" "}

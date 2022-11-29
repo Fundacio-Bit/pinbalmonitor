@@ -41,14 +41,14 @@ ul.peticions {
     ;
 }
 
-.servei h1, h2, h1 span {
+.procediment h1, h2, h1 span {
     color: var(--color-text);
 }
 
-.servei h2 {
+.procediment h2 {
     margin-bottom: 20px;
 }
 
-.servei h1{
+.procediment h1{
     margin-bottom: 20px;
 }
