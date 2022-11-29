@@ -83,7 +83,7 @@ export default function Servei(props) {
   // en el controlador: la de producció o la de proves
 
   return (
-    <li className="container-peticio" aria-label={props.id}>
+    <li className="container-servei" aria-label={props.id}>
       <Tooltip
         arrow
         placement="left-start"
@@ -91,16 +91,16 @@ export default function Servei(props) {
       >
         <button
           onClick={mockLoading}
-          className={`peticio ${loading ? "loading" : ""} ${
+          className={`servei ${loading ? "loading" : ""} ${
             resultatProva === "exit" ? "exit" : ""
           } ${resultatProva === "fall" ? "fall" : ""}`}
         >
-          <div className="nombre-peticio-container">
+          <div className="nombre-servei-container">
             <span>{props.nombre} </span>
           </div>
           {!loading ? (
-            <div className="text-peticio">
-              <span className="nom-peticio">{nom} ({functions.capitalitzar(entorn)})</span>
+            <div className="text-servei">
+              <span className="nom-servei">{nom} ({functions.capitalitzar(entorn)})</span>
               {ultimaProva ? (
                 <span className="timestamp"> ( {ultimaProva} ) </span>
               ) : (

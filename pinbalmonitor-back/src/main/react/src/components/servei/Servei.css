@@ -3,30 +3,30 @@
 Estils bàsic 
 -----------------------------------------------------------------------
 */
-.container-peticio {
+.container-servei {
     width: 100%;
 
 }
 
-.peticio:not(:hover):not(:focus-visible) .text-peticio span 
+.servei:not(:hover):not(:focus-visible) .text-servei span 
 {
     color: var(--color-text)
 }
 
-.peticio {
+.servei {
     margin-bottom: 40px;
     width: 100%;
     height: 90px;
     box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
     border-radius: 10px;
     position: relative;
-    background-color: var(--fons-peticio);
+    background-color: var(--fons-servei);
     z-index: 0;
     font-size: 1rem;
     border: none
 }
 
-.text-peticio {
+.text-servei {
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -36,13 +36,13 @@ Estils bàsic
 }
 
 
-.text-peticio span {
+.text-servei span {
     z-index: 1;
     font-size: 1.1em;
 
 }
 
-.text-peticio .timestamp {
+.text-servei .timestamp {
     font-size: 0.7em;
     align-self: flex-end;
     margin-bottom: 5px;
@@ -50,7 +50,7 @@ Estils bàsic
 }
 
 
-.nombre-peticio-container {
+.nombre-servei-container {
     background-color: var(--color-primari);
     width: 40px;
     height: 40px;
@@ -68,13 +68,13 @@ Estils bàsic
     rotate: 45deg;
 }
 
-.nombre-peticio-container span {
+.nombre-servei-container span {
     rotate: -45deg;
     color: var(--blanc);
 
 }
 
-.text-peticio {
+.text-servei {
     color: var(--blanc);
 
 }
@@ -85,7 +85,7 @@ Estils bàsic
     right: 4px;
 }
 
-.peticio .executar-boto {
+.servei .executar-boto {
     border-radius: 0 10px 0 50px;
     height: 40px;
     width: 40px;
@@ -118,30 +118,30 @@ Estils bàsic
 Estils quan ratolí a sobre de la petició o aquesta está carregant
 -----------------------------------------------------------------------
 */
-.peticio:focus-visible {
+.servei:focus-visible {
     outline: none;
 }
 
-.peticio:hover {
+.servei:hover {
     transition: color 0.3s ease-out;
     cursor: pointer;
 }
 
-.peticio:hover div.text-peticio,
-.peticio:focus-visible div.text-peticio {
+.servei:hover div.text-servei,
+.servei:focus-visible div.text-servei {
     transition: all 0.3s ease-out;
     color: var(--blanc) !important;
 }
 
-.peticio:hover .nombre-peticio-container,
-.peticio:focus-visible .nombre-peticio-container,
-.loading .nombre-peticio-container {
+.servei:hover .nombre-servei-container,
+.servei:focus-visible .nombre-servei-container,
+.loading .nombre-servei-container {
     background-color: var(--secundari);
     transition: all 0.5s ease-out;
 }
 
-.peticio:hover .executar-boto,
-.peticio:focus-visible .executar-boto,
+.servei:hover .executar-boto,
+.servei:focus-visible .executar-boto,
 .loading .executar-boto {
     width: 100%;
     height: 100%;
@@ -150,8 +150,8 @@ Estils quan ratolí a sobre de la petició o aquesta está carregant
     border-radius: inherit;
 }
 
-.peticio:hover .executar-icone,
-.peticio:focus-visible .executar-icone,
+.servei:hover .executar-icone,
+.servei:focus-visible .executar-icone,
 .loading .executar-icone {
     top: 33px;
     transition: all 0.3s ease-out;
@@ -167,28 +167,28 @@ Estils quan la petició és exitosa
 
 
 
-.peticio.exit .executar-boto {
+.servei.exit .executar-boto {
     background-color: var(--primari-exit)
 }
 
-.peticio.exit .nombre-peticio-container {
+.servei.exit .nombre-servei-container {
     background-color: var(--primari-exit);
 }
 
-.peticio.exit:hover .nombre-peticio-container,
-.peticio.exit:focus-visible .nombre-peticio-container,
-.peticio.exit.loading .nombre-peticio-container {
+.servei.exit:hover .nombre-servei-container,
+.servei.exit:focus-visible .nombre-servei-container,
+.servei.exit.loading .nombre-servei-container {
     background-color: var(--secundari-exit);
 }
 
-.peticio.exit {
-    background-color: var(--fons-peticio-exit);
+.servei.exit {
+    background-color: var(--fons-servei-exit);
 }
 
 
 
-.peticio.exit:hover .text-peticio,
-.peticio.fall:focus-visible .text-peticio {
+.servei.exit:hover .text-servei,
+.servei.fall:focus-visible .text-servei {
     color: var(--blanc);
 }
 
@@ -205,28 +205,28 @@ Estils quan la petició falla
 */
 
 
-.peticio.fall .executar-boto {
+.servei.fall .executar-boto {
     background-color: var(--primari-fall)
 }
 
-.peticio.fall .nombre-peticio-container {
+.servei.fall .nombre-servei-container {
     background-color: var(--primari-fall);
 }
 
-.peticio.fall:hover .nombre-peticio-container,
-.peticio.fall:focus-visible .nombre-peticio-container,
-.peticio.fall.loading .nombre-peticio-container {
+.servei.fall:hover .nombre-servei-container,
+.servei.fall:focus-visible .nombre-servei-container,
+.servei.fall.loading .nombre-servei-container {
     background-color: var(--secundari-fall);
 
 }
 
-.peticio.fall {
-    background-color: var(--fons-peticio-fall);
+.servei.fall {
+    background-color: var(--fons-servei-fall);
 }
 
 
-.peticio.fall:hover .text-peticio,
-.peticio.fall:focus-visible .text-peticio {
+.servei.fall:hover .text-servei,
+.servei.fall:focus-visible .text-servei {
     color: var(--blanc);
 }
 
@@ -237,7 +237,7 @@ Estils quan la petició falla
 }
 
 @media (max-width: 1000px) {
-    .text-peticio .timestamp {
+    .text-servei .timestamp {
         display: none;
     }
 

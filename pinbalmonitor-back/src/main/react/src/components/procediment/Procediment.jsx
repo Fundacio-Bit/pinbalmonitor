@@ -39,7 +39,7 @@ export default function Procediment(props) {
   function renderitzarProcedimentSimple() {
     let serveis = procediment.serveis;
     return (
-      <ul className="peticions">{renderitzarLlistaDeServeis(serveis)}</ul>
+      <ul className="serveis">{renderitzarLlistaDeServeis(serveis)}</ul>
     );
   }
 
@@ -48,7 +48,7 @@ export default function Procediment(props) {
     return subserveis.map((subservei, index) => (
       <div className="subservei" key={index}>
         <h2> {subservei.nom}</h2>
-        <ul className="peticions">
+        <ul className="serveis">
           {renderitzarLlistaDeServeis(subservei.serveis, subservei)}
         </ul>
       </div>
