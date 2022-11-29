@@ -8,7 +8,7 @@ import * as procediments from '../../components/procediment/data/dadesProcedimen
 
 export default function Layout() {
 
-  const [procediment, setProcediment] = useState(procediments.dadesServeisPropis);
+  const [procediment, setProcediment] = useState(procediments.serveisPropis);
 
   function renderitzarNouProcediment (procediment) {
     setProcediment(procediment)

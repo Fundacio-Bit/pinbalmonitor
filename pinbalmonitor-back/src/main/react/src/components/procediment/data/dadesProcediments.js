@@ -1,4 +1,4 @@
-const dadesFuncionamentPinbal = {
+const funcionamentPinbal = {
   titol: 'Validar el funcionament de PINBAL',
 
   serveis: [
@@ -12,7 +12,7 @@ const dadesFuncionamentPinbal = {
   ],
 };
 
-const dadesServeisPropis = {
+const serveisPropis = {
   titol: 'Validar serveis propis del GOIB',
   serveis: [
     {
@@ -28,7 +28,7 @@ const dadesServeisPropis = {
   ],
 };
 
-const dadesFamiliaNombrosa = {
+const familiaNombrosa = {
   titol: 'Validar emissors de família nombrosa',
   serveis: [
     { nom: 'Consulta de família nombrosa - Mallorca' },
@@ -36,7 +36,7 @@ const dadesFamiliaNombrosa = {
   ],
 };
 
-const dadesPadro = {
+const padro = {
   // Pendent -> encara no ho actualitz perquè pertany a un altre issue
   titol: 'Serveis de padró municipal',
   seccions: [
@@ -62,8 +62,8 @@ const dadesPadro = {
 };
 
 export {
-  dadesFuncionamentPinbal,
-  dadesServeisPropis,
-  dadesPadro,
-  dadesFamiliaNombrosa,
+  funcionamentPinbal,
+  serveisPropis,
+  padro,
+  familiaNombrosa,
 };
