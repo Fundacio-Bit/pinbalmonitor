@@ -3,11 +3,11 @@ import  React, { useState } from "react";
 import OpcionsEntorn from "../opcionsEntorn/OpcionsEntorn";
 import Peticio from "../peticio/Peticio";
 import functions from "../helpers";
-import "./Servei.css";
+import "./Procediment.css";
 
-export default function Servei(props) {
-  let servei = props.servei;
-  let titolServei = servei.titolServei;
+export default function Procediment(props) {
+  let procediment = props.procediment;
+  let titol = procediment.titol;
   /* La variable d'entorn serveix per ser passada al component
    ** fill per a que la petició apunti a la url corresponent.
    ** L'entorn és modificat a través del component Opcions entorn
@@ -18,8 +18,8 @@ export default function Servei(props) {
     setEntorn(e.target.value);
   }
 
-  /* Renderitzar totes les peticions que pertanyen servei
-   **(la info s'agafa de serveis/data/dadesSeveis) i és pasada per props
+  /* Renderitzar totes les peticions que pertanyen procediment
+   **(la info s'agafa de procediment/data/dadesSeveis) i és pasada per props
    ** des de l'enrutador a través del component pare (layout):
    */
   function renderitzarLlistaDePeticions(
@@ -36,15 +36,15 @@ export default function Servei(props) {
       />
     ));
   }
-  function renderitzarServeiSimple() {
-    let peticions = servei.peticions;
+  function renderitzarProcedimentSimple() {
+    let peticions = procediment.peticions;
     return (
       <ul className="peticions">{renderitzarLlistaDePeticions(peticions)}</ul>
     );
   }
 
-  function renderitzarServeiAmbSubserveis() {
-    let subserveis = servei.subserveis;
+  function renderitzarProcedimentAmbSubserveis() {
+    let subserveis = procediment.subserveis;
     return subserveis.map((subservei, index) => (
       <div className="subservei" key={index}>
         <h2> {subservei.nom}</h2>
@@ -54,17 +54,17 @@ export default function Servei(props) {
       </div>
     ));
   }
-  const renderitzarServei = () => {
-    return servei.subserveis
-      ? renderitzarServeiAmbSubserveis()
-      : renderitzarServeiSimple();
+  const renderitzarProcediment = () => {
+    return procediment.subserveis
+      ? renderitzarProcedimentAmbSubserveis()
+      : renderitzarProcedimentSimple();
   };
 
   return (
     <div className="servei">
       <div className="superior">
         <h1>
-          {titolServei} -{" "}
+          {titol} -{" "}
           <span
             className={`text-entorn ${
               entorn === "proves" ? "text-proves" : "text-producció"
@@ -75,7 +75,7 @@ export default function Servei(props) {
         </h1>
         <OpcionsEntorn handleChange={handleChange} entorn={entorn} />
       </div>
-      {renderitzarServei()}
+      {renderitzarProcediment()}
     </div>
   );
 }

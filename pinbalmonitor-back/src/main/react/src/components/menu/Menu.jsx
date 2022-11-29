@@ -2,24 +2,24 @@
 import React from 'react';
 import Button from "@mui/material/Button";
 import "./Menu.css";
-import rutesServeis from "./rutesServeis";
+import rutes from "./rutesProcediments";
 
 
 const Menu = (props) => {
-  const canviarServei = props.onClick
+  const canviarProcediment = props.onClick
 
   return (
     <div className="menu-container">
       <div className="menu">
 
-        { rutesServeis.map((p) => (
+        { rutes.map((r) => (
           <Button
-          className={props.servei===p.servei ? 'actiu' : ''} 
+          className={props.procediment===r.procediment ? 'actiu' : ''} 
             variant="contained"
             size="medium"
-            onClick={() => canviarServei(p.servei)}
+            onClick={() => canviarProcediment(r.procediment)}
           >
-          {p.nomAMenu}
+          {r.nomAMenu}
         </Button>
         ))}
 

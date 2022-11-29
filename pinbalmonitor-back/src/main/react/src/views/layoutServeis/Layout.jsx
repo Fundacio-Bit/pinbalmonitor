@@ -1,23 +1,23 @@
 /* eslint-disable */ 
 import React, {useState} from 'react';
-import Proptypes from 'prop-types';
-import Servei from '../../components/serveis/Servei';
+import Procediment from '../../components/Procediment/Procediment';
 import './Layout.css';
 import Menu from '../../components/menu/Menu'
-import * as peticions from '../../components/serveis/data/dadesServeis';
+import * as peticions from '../../components/procediment/data/dadesProcediments';
 
 
 export default function Layout() {
 
-  const [servei, setServei] = useState(peticions.dadesServeisPropis);
-  function renderitzarNouServei (servei) {
-    setServei(servei)
+  const [procediment, setProcediment] = useState(peticions.dadesServeisPropis);
+
+  function renderitzarNouProcediment (procediment) {
+    setProcediment(procediment)
   }
   return (
     <div className="layout">
-    <Menu servei={servei} onClick={renderitzarNouServei}/>
+    <Menu procediment={procediment} onClick={renderitzarNouProcediment}/>
       <br />
-      <Servei servei={servei} />
+      <Procediment procediment={procediment} />
     </div>
   );
 }

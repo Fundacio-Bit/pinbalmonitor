@@ -12,7 +12,7 @@ import rutesServeis from './rutesServeis';
 const rutaLandingPage = rutesServeis[0].path;
 const elementRutesAServeis = rutesServeis.map((ruta) => (
   <Route
-    key={ruta.servei.titolServei}
+    key={ruta.servei.titol}
     path={ruta.path}
     exact
     element={<Layout servei={ruta.servei} />}

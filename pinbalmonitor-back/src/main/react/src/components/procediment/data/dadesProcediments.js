@@ -1,5 +1,5 @@
 const dadesFuncionamentPinbal = {
-  titolServei: 'Validar el funcionament de PINBAL',
+  titol: 'Validar el funcionament de PINBAL',
 
   peticions: [
     { nom: "Petició a un servei intermediat de l'estat" },
@@ -13,7 +13,7 @@ const dadesFuncionamentPinbal = {
 };
 
 const dadesServeisPropis = {
-  titolServei: 'Validar serveis propis del GOIB',
+  titol: 'Validar serveis propis del GOIB',
   peticions: [
     {
       nom: 'Consulta de servei de Discapacitat',
@@ -29,7 +29,7 @@ const dadesServeisPropis = {
 };
 
 const dadesFamiliaNombrosa = {
-  titolServei: 'Validar emissors de família nombrosa',
+  titol: 'Validar emissors de família nombrosa',
   peticions: [
     { nom: 'Consulta de família nombrosa - Mallorca' },
     { nom: 'Consulta de família nombrosa - Menorca' },
@@ -38,7 +38,7 @@ const dadesFamiliaNombrosa = {
 
 const dadesPadro = {
   // Pendent -> encara no ho actualitz perquè pertany a un altre issue
-  titolServei: 'Serveis de padró municipal',
+  titol: 'Serveis de padró municipal',
   subserveis: [
     {
       nom: 'Consulta de padró històric',
