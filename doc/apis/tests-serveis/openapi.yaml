@@ -33,7 +33,7 @@ servers:
         # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`
         default: /pinbalmonitor
 paths:
-  /procediments:
+  /tests-serveis/procediments:
     get:
       tags:
       - Procediments
@@ -61,7 +61,7 @@ paths:
             text/plain; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/MsgResponse'
-  /{procediment}/serveis:
+  /tests-serveis/{procediment}/serveis:
     get:
       parameters:
             - name: procediment
