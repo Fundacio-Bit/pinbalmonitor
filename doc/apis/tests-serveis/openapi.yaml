@@ -1,0 +1,199 @@
+openapi: 3.0.0
+info:
+  title: Pinbalmonitor
+  # CommonMark syntax allowed here
+  description: '# This is a SCDCPAJUv3 server spec
+                You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/). For this sample, you can use the api key `special-key` to test the authorization filters.'
+  termsOfService: https://www.caib.es/sites/interoperabilitat/es/plataforma_de_interoperabilidad-55365/
+  contact:
+    email: pinbal@fundaciobit.org
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://pinbalmonitor.fundaciobit.org:8080/pinbalmonitorapi
+    description: The production API server
+    variables:
+      username:
+        # note! no enum here means it is an open value
+        default: pinbalmonitor
+        description: this value is assigned by the service provider, in this example `fundaciobit.org`
+      domain:
+        default: fundaciobit.org
+        description: Description
+      port:
+        enum:
+          - '80'
+          - '8080'
+          - '8443'
+          - '443'
+        default: '8080'
+      basePath:
+        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`
+        default: /pinbalmonitor
+paths:
+  /procediments:
+    get:
+      tags:
+      - Procediments
+      summary: Realitza una consulta per aconseguir els procediments
+      description: Consulta els procediments de pinbalmonitor
+      operationId: getProcediments
+      responses:
+        200:
+          description: Petició processada
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                oneOf:
+                   - $ref: '#/components/schemas/ProcedimentAmbSeccions'
+                   - $ref: '#/components/schemas/ProcedimentSimple'
+        400:
+          description: Petició errònia
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ModelApiResponse'
+        default:
+          description: Codi de resposta incorrecte
+          content:
+            text/plain; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/MsgResponse'
+  /{procediment}/serveis:
+    get:
+      parameters:
+            - name: procediment
+              in: path
+              required: true
+              schema:
+                type: string
+      tags:
+      - Serveis
+      summary: Realitza una consulta per aconseguir els serveis d'un procediment
+      description: Consulta els serveis d'un procediment
+      operationId: getServeis
+      responses:
+        200:
+          description: Petició processada
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                oneOf:
+                   - $ref: '#/components/schemas/Serveis'
+                   - $ref: '#/components/schemas/Seccions'
+        400:
+          description: Petició errònia
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ModelApiResponse'
+        default:
+          description: Codi de resposta incorrecte
+          content:
+            text/plain; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/MsgResponse'
+
+
+components:
+
+  schemas:
+    ProcedimentSimple:
+        type: object
+        required:
+          - id
+          - titol
+          - nomCurt
+          - serveis
+        properties:
+          id:
+            type: string
+            description: "L'identificador procediment."
+          titol:
+            type: string
+            description: "El títol del procediment."
+            example: "Validar el funcionament de pinbal"  
+          serveis:
+            $ref: '#/components/schemas/Serveis'
+            
+    ProcedimentAmbSeccions:
+      type: object
+      required:
+        - id
+        - nomCurt
+        - titol
+        - seccions
+      properties:
+        id:
+          type: string
+          description: "L'identificador procediment."
+        titol:
+          type: string
+          description: "El títol del procediment."
+          example: "Validar el funcionament de pinbal"
+        nomCurt:
+          type: string
+          description: "Un nom curt descriptiu per a poder pintar a pantalla per exemple al menú."
+          example: "Pinbal"  
+        seccions:
+            $ref: '#/components/schemas/Seccions'
+            
+    Serveis:
+        type: array
+        items:
+          type: object
+          required:
+            - nom
+            - id
+
+          properties:      
+            nom: 
+              type: string
+              description: "El nom del servei."
+              example: "Petició a un servei intermediat de l'estat"
+            id:
+              type: string
+              description: "L'id del servei."
+              example: "SBSDYU73"
+            prova:
+              type: object
+              description: "La url, paràmetres, tec. a la que cridam per fer la prova."
+              example: {url: "/exemple/url"}
+            
+              
+    Seccions:
+        type: array
+        items:
+          type: object
+          properties:      
+            nom: 
+              type: string
+              description: "El nom de la secció."
+              example: "Consulta de padró històric"
+            serveis:
+              $ref: '#/components/schemas/Serveis'
+              
+    ModelApiResponse:
+        type: object
+        properties:
+          code:
+            type: integer
+            format: int32
+          type:
+            type: string
+          message:
+            type: string
+            
+    MsgResponse:
+      type: string
+      description: "Resposta del servei en format lliure"
+      xml:
+        name: MsgResponse
+tags:
+- name: Pinbalmonitor
+  description: 'Consulta dels procediments i serveis que pinbalmonitor'
+  externalDocs:
+    description: 'Manual'
+    url: https://github.com/Fundacio-Bit/emiservbackoffice/blob/main/doc/interoperabilitat/SCDCHPAJUv3/cedent/ManualCedentPadroConvivencia.odt
