@@ -47,6 +47,13 @@ public class Configuracio {
     @ConfigProperty(name = "es.caib.pinbalmonitor.pinbal.finalitat")
     private String finalitat;
 
+    @Inject
+    @ConfigProperty(name = "es.caib.pinbalmonitor.pinbal.codiProvincia")
+    private String codiProvincia;
+
+    @Inject
+    @ConfigProperty(name = "es.caib.pinbalmonitor.pinbal.codiComunitatAutonoma")
+    private String codiComunitatAutonoma;
 
 
     public String getEndpoint() {
@@ -75,5 +82,13 @@ public class Configuracio {
 
     public String getFinalitat() {
         return finalitat;
+    }
+
+    public String getCodiProvincia(){
+        return codiProvincia;
+    }
+
+    public String getCodiComunitatAutonoma(){
+        return codiComunitatAutonoma;
     }
 }
