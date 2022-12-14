@@ -1,9 +1,10 @@
 import React from 'react';
+import Layout from '../views/layoutServeis/Layout';
 
 export default function App() {
     return (
-      <div>
-        <h1>Bienvenido a tu primera app con React JS</h1>
+      <div className="App">
+        <Layout />
       </div>
     );
 }

@@ -1,0 +1,54 @@
+.serveis {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.superior {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+.text-entorn {
+    border-radius: 5px;
+    padding: 4px;
+    border: solid 1px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+
+}
+
+
+.text-proves {
+
+    background-color: rgba(255, 208, 0, 0.21);
+    border-color: #eebe306e;
+    color: var(--color-text)
+}
+
+.text-producció {
+    background-color: #00ffa91c;
+    border-color: #3095ee6e;
+    color: var(--color-text)
+
+}
+
+ul.serveis {
+    list-style: none;
+    padding-left:0;
+
+    ;
+}
+
+.procediment h1, h2, h1 span {
+    color: var(--color-text);
+}
+
+.procediment h2 {
+    margin-bottom: 20px;
+}
+
+.procediment h1{
+    margin-bottom: 20px;
+}

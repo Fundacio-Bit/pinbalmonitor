@@ -1,0 +1,52 @@
+:root:not(.fosc) {
+    /* PALETA COLORS CLAR*/
+    /* idea inicial de paleta de colors -> pendent canviar*/
+    --color-primari: #6E3667;
+    --fons-servei: #fff6f1;
+    --secundari: #391e2d;
+    --blanc: rgb(254, 249, 255);
+    --fons: var(--blanc);
+    --color-text: black;
+    --primari-exit: #3f983f;
+    --secundari-exit: #0e4927;
+    --fons-servei-exit: #c0fec8;
+    --primari-fall: #f14646;
+    --secundari-fall: #590000;
+    --fons-servei-fall: #fdcdc6;
+    --color-radio: var(--color-primari);
+
+}
+
+
+.procediment {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.snackbar span, .snackbar div {
+    color: var(--blanc);
+}
+
+
+body {
+    background-color: var(--fons);
+}
+
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-transform: capitalize;
+    font-size: 2rem;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+
+
+
+
+}

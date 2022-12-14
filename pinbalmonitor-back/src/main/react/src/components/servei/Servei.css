@@ -1,0 +1,245 @@
+/* 
+-----------------------------------------------------------------------
+Estils bàsic 
+-----------------------------------------------------------------------
+*/
+.container-servei {
+    width: 100%;
+
+}
+
+.servei:not(:hover):not(:focus-visible) .text-servei span 
+{
+    color: var(--color-text)
+}
+
+.servei {
+    margin-bottom: 40px;
+    width: 100%;
+    height: 90px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+    border-radius: 10px;
+    position: relative;
+    background-color: var(--fons-servei);
+    z-index: 0;
+    font-size: 1rem;
+    border: none
+}
+
+.text-servei {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 4%;
+}
+
+
+.text-servei span {
+    z-index: 1;
+    font-size: 1.1em;
+
+}
+
+.text-servei .timestamp {
+    font-size: 0.7em;
+    align-self: flex-end;
+    margin-bottom: 5px;
+    margin-right: 4%;
+}
+
+
+.nombre-servei-container {
+    background-color: var(--color-primari);
+    width: 40px;
+    height: 40px;
+    color: var(--blanc);
+    font-weight: bolder;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: absolute;
+    top: -19px;
+    left: 10px;
+    z-index: 1;
+    rotate: 45deg;
+}
+
+.nombre-servei-container span {
+    rotate: -45deg;
+    color: var(--blanc);
+
+}
+
+.text-servei {
+    color: var(--blanc);
+
+}
+
+.executar-icone {
+    position: absolute;
+    top: 6px;
+    right: 4px;
+}
+
+.servei .executar-boto {
+    border-radius: 0 10px 0 50px;
+    height: 40px;
+    width: 40px;
+    padding-left: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: var(--color-primari);
+    color: var(--blanc);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: -1;
+}
+
+
+.icone-output {
+    position: absolute;
+    right: 5px;
+    bottom: -10px;
+    z-index: 1;
+    border-radius: 50%;
+    font-size: 1.6em;
+    background-color: var(--blanc);
+}
+
+
+/*
+-----------------------------------------------------------------------
+Estils quan ratolí a sobre de la petició o aquesta está carregant
+-----------------------------------------------------------------------
+*/
+.servei:focus-visible {
+    outline: none;
+}
+
+.servei:hover {
+    transition: color 0.3s ease-out;
+    cursor: pointer;
+}
+
+.servei:hover div.text-servei,
+.servei:focus-visible div.text-servei {
+    transition: all 0.3s ease-out;
+    color: var(--blanc) !important;
+}
+
+.servei:hover .nombre-servei-container,
+.servei:focus-visible .nombre-servei-container,
+.loading .nombre-servei-container {
+    background-color: var(--secundari);
+    transition: all 0.5s ease-out;
+}
+
+.servei:hover .executar-boto,
+.servei:focus-visible .executar-boto,
+.loading .executar-boto {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    transition: all 0.3s ease-out;
+    border-radius: inherit;
+}
+
+.servei:hover .executar-icone,
+.servei:focus-visible .executar-icone,
+.loading .executar-icone {
+    top: 33px;
+    transition: all 0.3s ease-out;
+
+}
+
+
+/*
+-----------------------------------------------------------------------
+Estils quan la petició és exitosa
+-----------------------------------------------------------------------
+*/
+
+
+
+.servei.exit .executar-boto {
+    background-color: var(--primari-exit)
+}
+
+.servei.exit .nombre-servei-container {
+    background-color: var(--primari-exit);
+}
+
+.servei.exit:hover .nombre-servei-container,
+.servei.exit:focus-visible .nombre-servei-container,
+.servei.exit.loading .nombre-servei-container {
+    background-color: var(--secundari-exit);
+}
+
+.servei.exit {
+    background-color: var(--fons-servei-exit);
+}
+
+
+
+.servei.exit:hover .text-servei,
+.servei.fall:focus-visible .text-servei {
+    color: var(--blanc);
+}
+
+
+.icone-output-exit {
+    color: var(--primari-exit);
+}
+
+
+/*
+-----------------------------------------------------------------------
+Estils quan la petició falla
+-----------------------------------------------------------------------
+*/
+
+
+.servei.fall .executar-boto {
+    background-color: var(--primari-fall)
+}
+
+.servei.fall .nombre-servei-container {
+    background-color: var(--primari-fall);
+}
+
+.servei.fall:hover .nombre-servei-container,
+.servei.fall:focus-visible .nombre-servei-container,
+.servei.fall.loading .nombre-servei-container {
+    background-color: var(--secundari-fall);
+
+}
+
+.servei.fall {
+    background-color: var(--fons-servei-fall);
+}
+
+
+.servei.fall:hover .text-servei,
+.servei.fall:focus-visible .text-servei {
+    color: var(--blanc);
+}
+
+.icone-output-fall {
+    color: var(--primari-fall);
+
+
+}
+
+@media (max-width: 1000px) {
+    .text-servei .timestamp {
+        display: none;
+    }
+
+
+}

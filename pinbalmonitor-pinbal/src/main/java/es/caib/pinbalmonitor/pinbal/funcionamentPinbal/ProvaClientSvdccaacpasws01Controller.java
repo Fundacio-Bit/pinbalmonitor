@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import es.caib.pinbalmonitor.pinbal.Configuracio;
 import es.caib.pinbalmonitor.pinbal.TitularModel;
 import es.caib.pinbalmonitor.pinbal.FuncionariModel;
-
 import javax.annotation.PostConstruct;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -97,8 +97,9 @@ public class ProvaClientSvdccaacpasws01Controller implements Serializable {
         solicitud.setFuncionario(funcionari.toScspFuncionario());
         solicitud.setTitular(titular.toScspTitular());
         // Datos específicos
-        solicitud.setCodigoProvincia(configuracio.getCodiProvincia());
-        solicitud.setCodigoComunidadAutonoma(configuracio.getCodiComunitatAutonoma());
+        // TODO: afegir-los des de config :
+        solicitud.setCodigoProvincia("07");
+        solicitud.setCodigoComunidadAutonoma("08");
         try {
             resposta = clientPinbalCCAA.peticioSincrona(solicitud);
         } catch (Exception e) {
