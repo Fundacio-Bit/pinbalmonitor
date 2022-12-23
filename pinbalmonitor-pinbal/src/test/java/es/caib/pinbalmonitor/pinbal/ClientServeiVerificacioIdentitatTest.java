@@ -1,7 +1,15 @@
 package es.caib.pinbalmonitor.pinbal;
 
-import javax.inject.Inject;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
+import es.caib.pinbal.client.recobriment.model.ScspJustificante;
+import es.caib.pinbal.client.recobriment.model.ScspSolicitante;
+import es.caib.pinbal.client.recobriment.svddgpviws02.ClientSvddgpviws02;
+import java.util.Arrays;
+import java.util.List;
+import javax.inject.Inject;
+import javax.validation.Valid;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,62 +18,86 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import es.caib.pinbal.client.recobriment.svddgpviws02.ClientSvddgpviws02;
-
 public class ClientServeiVerificacioIdentitatTest {
 
-	private static final Logger LOG = LoggerFactory.getLogger(ClientServeiVerificacioIdentitatTest.class);
+  private static final Logger LOG = LoggerFactory.getLogger(
+    ClientServeiVerificacioIdentitatTest.class
+  );
 
-	/**
-	 *
-	 */
-	@Inject
-    private Configuracio configuracio;
+  /**
+   *
+   */
+  @Inject
+  private Configuracio configuracio;
 
-	private ClientSvddgpviws02 clientSvddgpviws02;
+  private ClientSvddgpviws02 clientSvddgpviws02;
+  private ClientSvddgpviws02.SolicitudSvddgpviws02 solicitud;
+  private List<ClientSvddgpviws02.SolicitudSvddgpviws02> llistaSolicituds;
 
-	public ClientServeiVerificacioIdentitatTest(){
+  @Valid
+  private TitularModel titular;
 
-	}
+  public TitularModel getTitular() {
+    return titular;
+  }
 
-	@BeforeClass
-	public void setUpClass(){
-		LOG.info("Iniciant client");
-        clientSvddgpviws02 = new ClientSvddgpviws02(
-                configuracio.getEndpoint(),
-                configuracio.getUsuari(),
-                configuracio.getSecret());
-        LOG.info("Client creat");
-	}
+  @Valid
+  private FuncionariModel funcionari;
 
-	@AfterClass
-	public void tearDownClass(){
+  public ClientServeiVerificacioIdentitatTest() {}
 
-	}
+ /* @BeforeClass
+  public void setUpClass() {
+    LOG.info("Iniciant client");
+    clientSvddgpviws02 =
+      new ClientSvddgpviws02(
+        configuracio.getEndpoint(),
+        configuracio.getUsuari(),
+        configuracio.getSecret()
+      );
+    LOG.info("Client creat");
+  } */
 
-	@Before
-	public void setUp(){
+  @AfterClass
+  public static void tearDownClass() {}
 
-	}	
+  @Before
+  public void setUp() {
+    this.solicitud = new ClientSvddgpviws02.SolicitudSvddgpviws02();
+    solicitud.setIdentificadorSolicitante(
+      configuracio.getOrganismeSolicitant()
+    );
+    solicitud.setUnidadTramitadora(configuracio.getUnitatTramitadora());
+    solicitud.setCodigoProcedimiento(configuracio.getCodiProcediment());
+    solicitud.setFinalidad(configuracio.getFinalitat());
+    solicitud.setConsentimiento(ScspSolicitante.ScspConsentimiento.Si);
 
-	@After
-	public void tearDown(){
+    solicitud.setFuncionario(funcionari.toScspFuncionario());
+    solicitud.setTitular(titular.toScspTitular());
 
-	}
+    this.llistaSolicituds = Arrays.asList(solicitud);
+  }
 
-	@Test
-	public void testInit() throws Exception {
+  @After
+  public void tearDown() {}
 
-	}
+  @Test
+  public void testInit() throws Exception {}
 
-	@Test
-	public void testPeticioSincrona() throws Exception {
+  @Test
+  public void testPeticioSincrona() throws Exception {
+    assertNotNull(
+      this.clientSvddgpviws02.peticionSincrona(this.llistaSolicituds)
+    );
+  }
 
-	}
-
-	@Test
-	public void testGetJustificant() throws Exception {
-
-	}
-
+  @Test
+  public void testGetJustificant() throws Exception {
+    assertNotNull(this.clientSvddgpviws02.getJustificante("parametrostring"));
+    assertTrue(
+      this.clientSvddgpviws02.getJustificante(
+          "parametrostring"
+        ) instanceof ScspJustificante
+    );
+  }
 }
