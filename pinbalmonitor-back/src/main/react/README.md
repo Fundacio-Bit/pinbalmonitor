@@ -63,21 +63,18 @@ doc-react/procediment.PNG">
 Fet això es crearà un botó al menú amb la funció de renderitzar la vista Layout amb les dades del procediment (especificades a src/components/procediment/data/dadesProcediments.js)
 
 
--- A partir d'aquí pendent de canvi
-
-
 
 <p align="center">
-  <img alt="Com l'enrutador crea la vista" src="doc-react/enrutador vista.png">
+  <img alt="Com fer que el menú permeti renderitzar la vista" src="exemple-afegir-procediment.PNG">
 </p>
 
-El Layout passarà la prop procediment al component Procediment, d'aquesta manera aquest coneix quin és el seu títol i quins són els seus serveis.
+El Menú pinta un botó per a cada un dels procediments llistats a l'arxiu src/menu/rutesProcediments.js. Aquest botó el que permet és canviar el procediment que surt en pantalla (amb una funció onclick passada a través de props)
 <p align="center">
-  <img alt="Com el Layout renderitza el procediment amb les dades corresponents" src="doc-react/Layout servei.PNG">
+  <img alt="Com el Layout renderitza el procediment amb les dades corresponents" src="doc-react/menu-codi.PNG">
 </p>
 
-Després d'haver seguit els passos el resultat de la vista de la ruta /exemple (la que s'ha especificat a la propietat path de l'enrutador) será:
+El fet que els botons del menú puguin canviar la vista renderitzant un procediment concret és possible gràcies a aquest hook al arxiu Layout.jsx (ruta src/views/layoutServeis/Layout.jsx)
 
 <p align="center">
-  <img alt="Resultat que quedaria seguint les passes de l'exemple" src="doc-react/resultat-exemple.PNG">
+  <img alt="Resultat que quedaria seguint les passes de l'exemple" src="doc-react/layout-codi.PNG">
 </p>
