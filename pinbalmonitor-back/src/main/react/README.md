@@ -65,7 +65,7 @@ Fet això es crearà un botó al menú amb la funció de renderitzar la vista La
 
 
 <p align="center">
-  <img alt="Com fer que el menú permeti renderitzar la vista" src="exemple-afegir-procediment.PNG">
+  <img alt="Com fer que el menú permeti renderitzar la vista" src="doc-react/exemple-afegir-procediment.PNG">
 </p>
 
 El Menú pinta un botó per a cada un dels procediments llistats a l'arxiu src/menu/rutesProcediments.js. Aquest botó el que permet és canviar el procediment que surt en pantalla (amb una funció onclick passada a través de props)
