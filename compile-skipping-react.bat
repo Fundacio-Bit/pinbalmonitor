@@ -2,7 +2,7 @@
 
 type help.txt
 
-cmd /C mvn -DskipTests -P compilarfront  %* install
+cmd /C mvn -DskipTests %* install
 
 if %errorlevel% EQU 0 (
 

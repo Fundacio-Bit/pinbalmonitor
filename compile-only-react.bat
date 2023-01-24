@@ -2,7 +2,7 @@
 
 type help.txt
 
-cmd /C mvn -DskipTests -P compilarfront  %* install
+cmd /C mvn -DskipTests clean install -pl .,pinbalmonitor-back,pinbalmonitor-ear -P compilarfront
 
 if %errorlevel% EQU 0 (
 
