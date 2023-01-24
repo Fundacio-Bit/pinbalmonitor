@@ -25,7 +25,7 @@ import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
  *
  * @author areus
  */
-@Named("pinbalCCAAController")
+@Named("pinbalCCAAController1")
 @ViewScoped
 public class ProvaClientSvdccaacpasws01Controller implements Serializable {
     

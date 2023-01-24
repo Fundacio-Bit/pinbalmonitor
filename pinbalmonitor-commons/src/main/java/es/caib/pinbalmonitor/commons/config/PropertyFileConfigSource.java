@@ -54,6 +54,12 @@ public class PropertyFileConfigSource implements ConfigSource {
             properties.stringPropertyNames().forEach(
                     x -> propertyMap.put(x, properties.getProperty(x))
             );
+    /*  LOG per veure si els valors de les properties s'agafen correctament
+
+            properties.stringPropertyNames().forEach(
+                x -> LOG.info("propietat:" + x + " value= " + properties.getProperty(x))
+        );
+ */
         }
 
         PROPERTY_MAP = Collections.unmodifiableMap(propertyMap);
