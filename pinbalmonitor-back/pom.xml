@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>es.caib.pinbalmonitor</groupId>
@@ -101,72 +102,30 @@
           </filesets>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>com.github.eirslett</groupId>
-        <artifactId>frontend-maven-plugin</artifactId>
-
-        <executions>
-          <execution>
-            <id>install node and npm</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>install-node-and-npm</goal>
-            </goals>
-            <configuration>
-              <nodeVersion>v12.14.0</nodeVersion>
-              <npmVersion>6.13.4</npmVersion>
-            </configuration>
-          </execution>
-          <execution>
-            <id>npm install</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-            <configuration>
-              <arguments>install</arguments>
-            </configuration>
-          </execution>
-          <execution>
-            <id>webpack build</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>webpack</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <installDirectory>target</installDirectory>
-          <workingDirectory>src/main/react</workingDirectory>
-        </configuration>
-      </plugin>
-
-
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.0.2</version>
         <executions>
-            <execution>
-                <id>copy-resource-react</id>
-                <phase>prepare-package</phase>
-                <goals>
-                    <goal>copy-resources</goal>
-                </goals>
-                <configuration>
-                    <outputDirectory>${basedir}/target/${artifactId}</outputDirectory>
-                    <resources>
-                        <resource>
-                            <directory>src/main/react/dist</directory>
-                            <includes>
-                              <include>**/*</include>
-                            </includes>
-                        </resource>
-                    </resources>
-                </configuration>
-            </execution>
+          <execution>
+            <id>copy-resource-react</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/${artifactId}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/react/dist</directory>
+                  <includes>
+                    <include>**/*</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
         </executions>
-    </plugin>
+      </plugin>
 
     </plugins>
   </build>
@@ -194,6 +153,52 @@
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>compilarfront</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+
+            <executions>
+              <execution>
+                <id>install node and npm</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>v12.14.0</nodeVersion>
+                  <npmVersion>6.13.4</npmVersion>
+                </configuration>
+              </execution>
+              <execution>
+                <id>npm install</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <arguments>install</arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>webpack build</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>webpack</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <installDirectory>target</installDirectory>
+              <workingDirectory>src/main/react</workingDirectory>
+            </configuration>
           </plugin>
         </plugins>
       </build>
