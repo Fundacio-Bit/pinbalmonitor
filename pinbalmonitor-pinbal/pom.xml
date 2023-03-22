@@ -41,7 +41,7 @@
         <dependency>
             <groupId>es.caib.pinbal</groupId>
             <artifactId>pinbal-client</artifactId>
-            <version>${pinbal-client.version}</version>
+            <version>1.4.32</version>
             <exclusions>
                 <!-- evitar conflicte amb JAX-RS de JBoss -->
                 <exclusion>
@@ -56,8 +56,15 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-    </dependencies>
 
+    </dependencies>
+<repositories>
+<repository>
+<id>github-governib-maven-repos</id>
+<name>GovernIB Maven Repository</name>
+<url>https://governib.github.io/maven/maven/</url>
+</repository>
+</repositories>
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
