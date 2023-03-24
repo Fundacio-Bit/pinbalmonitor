@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import es.caib.pinbal.client.recobriment.model.ScspJustificante;
 import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
-import es.caib.pinbal.client.recobriment.svdsctfnws01.scdhpa;
+import es.caib.pinbal.client.recobriment.svdsctfnws01.ClientSvdsctfnws01;
 public class ClientFamiliaNombrosa {
     
 

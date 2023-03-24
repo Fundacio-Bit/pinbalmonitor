@@ -24,7 +24,7 @@ import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
  *
  * @author areus
  */
-@Named("pinbalSSController")
+@Named("pinbalFNController")
 @ViewScoped
 public class ClientFamiliaNombrosaController implements Serializable {
     
@@ -36,7 +36,7 @@ public class ClientFamiliaNombrosaController implements Serializable {
      * Injecta l'API del client del servei de verificació d'identitat
      */
     @Inject
-    private ClientFamiliaNombrosa ClientFM  ;
+    private ClientFamiliaNombrosa ClientFN  ;
 
     @Inject
     private Configuracio configuracio;
@@ -82,7 +82,7 @@ public class ClientFamiliaNombrosaController implements Serializable {
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
     public void correntPagament() {
-        LOG.info("ClientFM");
+        LOG.info("ClientFN");
 
         ClientSvdsctfnws01.SolicitudSvdsctfnws01 solicitud = new ClientSvdsctfnws01.SolicitudSvdsctfnws01();
         solicitud.setIdentificadorSolicitante(configuracio.getOrganismeSolicitant());
@@ -96,7 +96,7 @@ public class ClientFamiliaNombrosaController implements Serializable {
         // Datos específicos
 
         try {
-            resposta = ClientFM.peticioSincrona(solicitud);
+            resposta = ClientFN.peticioSincrona(solicitud);
         } catch (Exception e) {
             FacesMessage message = new FacesMessage(SEVERITY_ERROR, "Error al client Pinbal", e.getMessage());
             context.addMessage(null, message);
@@ -113,7 +113,7 @@ public class ClientFamiliaNombrosaController implements Serializable {
         }
 
         String idPeticio = resposta.getAtributos().getIdPeticion();
-        ScspJustificante justificant = ClientFM.getJustificant(idPeticio);
+        ScspJustificante justificant = ClientFN.getJustificant(idPeticio);
         download(justificant.getNom(), justificant.getContentType(), justificant.getContingut());
     }
 
@@ -127,7 +127,7 @@ public class ClientFamiliaNombrosaController implements Serializable {
      */
     private void download(String filename, String mimetype, byte[] content) throws IOException {
         ExternalContext ec = context.getExternalContext();
-        ec.responseReset(); // Hem de resetejar la reposta per si hi ha cap capçalera o res.
+        ec.responseReset(); // Hem de resetejars la reposta per si hi ha cap capçalera o res.
         ec.setResponseContentType(mimetype);
         ec.setResponseContentLength(content.length);
         ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
