@@ -16,3 +16,5 @@ nb-configuration.xml
 faces-config.NavData
 node/
 node_modules/
+# Fitxers de visual studio code 
+.vscode
