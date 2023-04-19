@@ -30,7 +30,7 @@ public class ClientDiscapacitatController implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(ClientServeiCorrentPagamentAmbSSController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ClientDiscapacitatController.class);
 
     /**
      * Injecta l'API del client del servei de verificació d'identitat

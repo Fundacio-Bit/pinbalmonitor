@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -12,6 +13,9 @@ import org.slf4j.LoggerFactory;
 import es.caib.pinbal.client.recobriment.model.ScspJustificante;
 import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
 import es.caib.pinbal.client.recobriment.svdsccdws01.ClientSvdsccdws01;
+
+@ApplicationScoped
+
 public class ClientDiscapacitat {
     
 
