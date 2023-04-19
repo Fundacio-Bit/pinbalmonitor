@@ -36,6 +36,11 @@
             <artifactId>pinbalmonitor-service</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>es.caib.pinbalmonitor</groupId>
+            <artifactId>pinbalmonitor-plugins-identitat</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <!-- Anotacions de documentació de openapi -->
         <dependency>
             <groupId>org.eclipse.microprofile.openapi</groupId>
