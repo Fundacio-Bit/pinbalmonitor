@@ -1,4 +1,4 @@
-package es.caib.pinbalmonitor.plugins.identitat;
+package es.caib.pinbalmonitor.plugins;
 
 import es.caib.pinbal.client.recobriment.model.ScspFuncionario;
 

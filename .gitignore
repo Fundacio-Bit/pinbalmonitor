@@ -18,3 +18,5 @@ node/
 node_modules/
 # Fitxers de visual studio code 
 .vscode
+pinbalmonitor-back/src/main/react/.env
+pinbalmonitor-plugins/identitat/src/main/java/es/caib/pinbalmonitor/plugins/.env

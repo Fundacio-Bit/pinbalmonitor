@@ -1,8 +1,8 @@
-package es.caib.pinbalmonitor.plugins.identitat;
+package es.caib.pinbalmonitor.plugins;
 
 import es.caib.pinbal.client.recobriment.model.ScspTitular;
 import es.caib.pinbal.client.recobriment.model.ScspTitular.ScspTipoDocumentacion;
-import es.caib.pinbalmonitor.plugins.identitat.scsp.TipoDocumentacionSubset;
+import es.caib.pinbalmonitor.plugins.scsp.TipoDocumentacionSubset;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

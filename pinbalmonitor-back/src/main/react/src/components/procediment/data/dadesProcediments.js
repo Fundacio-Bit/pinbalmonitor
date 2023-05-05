@@ -1,13 +1,20 @@
+/* eslint-disable */
+
 const funcionamentPinbal = {
   titol: 'Validar el funcionament de PINBAL',
 
   serveis: [
-    { nom: "Petició a un servei intermediat de l'estat" },
+    {
+      nom: "Petició a un servei intermediat de l'estat",
+      ruta: 'http://127.0.0.1:8080/pinbalmonitorapi/interna/services/pinbal/verificacioIdentitat',
+   },
     { nom: 'Petició a un servei  oferit pel Govern' },
     {
       nom: 'Petició a un servei  oferit per una altra administració de la CAIB',
     },
-    { nom: "Petició asíncrona a un servei intermediat de l'estat" },
+    {
+      nom: "Petició asíncrona a un servei intermediat de l'estat",
+    },
     { nom: 'Obtenir justificant de verificació de dades' },
   ],
 };
@@ -22,7 +29,10 @@ const serveisPropis = {
     {
       nom: "Consulta de servei de pagament amb l'ATIB per ajudes i subvencions",
     },
-    { nom: "Consulta de servei de pagament amb l'ATIB per contractacions" },
+    {
+      nom: "Consulta de servei de pagament amb l'ATIB per contractacions",
+      ruta: 'http://127.0.0.1:8080/pinbalmonitorapi/interna/services/pinbal/pagamentContractacions', 
+    },
     { nom: "Consulta de servei d'estar matriculat a un centre educatiu" },
     { nom: 'Obtenir un justificant de verificació de dades' },
   ],

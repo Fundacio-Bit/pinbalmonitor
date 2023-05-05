@@ -1,4 +1,4 @@
-package es.caib.pinbalmonitor.plugins.identitat.scsp;
+package es.caib.pinbalmonitor.plugins.scsp;
 
 import es.caib.pinbal.client.recobriment.model.ScspTitular;
 
