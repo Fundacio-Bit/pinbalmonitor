@@ -1,4 +1,4 @@
-package es.caib.pinbalmonitor.plugins.identitat;
+package es.caib.pinbalmonitor.plugins;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 

@@ -29,11 +29,18 @@ export default function Servei(props) {
   function mockLoading() {
     //fetch temporal per simular request -> resultat aleatori
     setLoading(true);
-    fetch("https://reqres.in/api/users?delay=3")
+    console.log(props)
+    console.log(props.ruta)
+    fetch(`${props.ruta}`,
+    		{
+      headers: {
+			"Authorization": "posar a mà"
+		}},)
       .then((res) => {
         console.log(res);
         setLoading(false);
-        Math.random() < 0.5
+        console.log(res.body)
+      res.body === 'true'
           ? setResultatProva("exit")
           : setResultatProva("fall");
         setUltimaProva(
