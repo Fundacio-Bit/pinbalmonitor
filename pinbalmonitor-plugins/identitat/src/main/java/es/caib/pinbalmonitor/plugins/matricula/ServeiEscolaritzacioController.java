@@ -1,16 +1,18 @@
 
-package es.caib.pinbalmonitor.plugins.pagamentContractacions;
+package es.caib.pinbalmonitor.plugins.matricula;
 
 import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
+import javax.faces.application.FacesMessage;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.validation.Valid;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,21 +22,20 @@ import es.caib.pinbal.client.recobriment.model.ScspTitular;
 import es.caib.pinbal.client.recobriment.model.Solicitud;
 import es.caib.pinbal.client.recobriment.model.ScspSolicitante.ScspConsentimiento;
 import es.caib.pinbal.client.recobriment.model.ScspTitular.ScspTipoDocumentacion;
-import es.caib.pinbalmonitor.plugins.DatosEspecificos;
 import es.caib.pinbalmonitor.plugins.FuncionariModel;
 import es.caib.pinbalmonitor.plugins.TitularModel;
 import io.github.cdimascio.dotenv.Dotenv;
+
+
 
 /**
  * Controlador d'exemple per emprar el servei de verificació d'identitat.
  *
  * @author areus
  */
-@Named("pinbalCCAAContractacions")
+@Named("pinbalEscolaritzacio")
 @ViewScoped
-public class ClientPagamentContractacionsController implements Serializable {
-
-
+public class ServeiEscolaritzacioController implements Serializable {
     Dotenv dotenv = Dotenv.load();
 
 
@@ -42,13 +43,13 @@ public class ClientPagamentContractacionsController implements Serializable {
     private  final String URL_BASE = dotenv.get("ENDPOINT");
     private  final String USUARI = dotenv.get("USUARI");    
     private  final String CONTRASENYA =dotenv.get("SECRET");
-    private  final String SERVEI_SCSP = "SVDCCAACPCWS01";
+    private  final String SERVEI_SCSP = "SCMCEDU";
     private  final boolean ENABLE_LOGGING = true;
 
  
     private static final long serialVersionUID = 1L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(ClientPagamentContractacionsController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ServeiEscolaritzacioController.class);
 
     /**
      * Injecta l'API del client del servei de verificació d'identitat
@@ -84,9 +85,9 @@ public class ClientPagamentContractacionsController implements Serializable {
     public void neteja() {
         resposta = null;
     }
-    @Valid
-    private DatosEspecificos datosEspecificos;
 
+
+ 
     
 
 
@@ -95,9 +96,12 @@ public class ClientPagamentContractacionsController implements Serializable {
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-    public boolean correntPagament()  {
-
+    public boolean matricula() {
+    	LOG.info("escolarització");
+        //client
         ClientGeneric client = new ClientGeneric(URL_BASE, USUARI, CONTRASENYA);
+        LOG.info("Client creat");
+
         
         // Funcionari
         ScspFuncionario funcionario = new ScspFuncionario();
@@ -113,17 +117,18 @@ public class ClientPagamentContractacionsController implements Serializable {
         String xmlDadesEspecifiques = "";
         StringBuilder xmlBuilder = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         xmlBuilder.append("<DatosEspecificos>");
-        xmlBuilder.append("<Consulta>");
-        xmlBuilder.append("<CodigoComunidadAutonoma>07</CodigoComunidadAutonoma>");
-        xmlBuilder.append("<CodigoProvincia>07</CodigoProvincia>");
-        xmlBuilder.append("</Consulta>");
+        xmlBuilder.append("<Solicitud>");
+        xmlBuilder.append("<FechaNacimientoTitular>28/09/2022</FechaNacimientoTitular>");
+        xmlBuilder.append("<IdTutor>");
+        xmlBuilder.append("<TipoDocumentacion>NIF</TipoDocumentacion><Documentacion>35146644E</Documentacion>");
+        xmlBuilder.append("</IdTutor>");
+        xmlBuilder.append("</Solicitud>");
         xmlBuilder.append("</DatosEspecificos>");
         xmlDadesEspecifiques = xmlBuilder.toString();
     
     
         Solicitud solicitud = new Solicitud();
-    
-        // Solicitant
+        
         //solicitud.setIdentificadorSolicitante("B07167448");
         solicitud.setIdentificadorSolicitante("S0711001H");
 
@@ -142,11 +147,14 @@ public class ClientPagamentContractacionsController implements Serializable {
     
         solicitud.setDatosEspecificos(xmlDadesEspecifiques);
     
-        
     
+        
+
+        // 
+
         try {
-        ScspRespuesta respuesta = client.peticionSincrona(SERVEI_SCSP, Arrays.asList(solicitud));
-        return true;
+            resposta =  client.peticionSincrona("SCMCEDU", Arrays.asList(solicitud));
+            return true;
         } catch (Exception e) {
             //FacesMessage message = new FacesMessage(SEVERITY_ERROR, "Error al client Pinbal", e.getMessage());
             // context.addMessage(null, message);
@@ -157,10 +165,18 @@ public class ClientPagamentContractacionsController implements Serializable {
             e.printStackTrace(); 
             return (false );
         }
-
-    
     }
 
-   
+
+
+    /**
+     * Mètode d'utilitat per descarregar un fitxer
+     *
+     * @param filename Nom del fitxer
+     * @param mimetype tipus mime pel content-type
+     * @param content contingut del fitxer
+     * @throws IOException Si es produeix un error I/O
+     */
+  
 }
 

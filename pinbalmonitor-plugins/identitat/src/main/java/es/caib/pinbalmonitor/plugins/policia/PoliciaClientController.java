@@ -1,9 +1,11 @@
 package es.caib.pinbalmonitor.plugins.policia;
 
+import es.caib.pinbal.client.recobriment.ClientGeneric;
 import es.caib.pinbal.client.recobriment.model.ScspFuncionario;
 import es.caib.pinbal.client.recobriment.model.ScspJustificante;
 import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
 import es.caib.pinbal.client.recobriment.model.ScspTitular;
+import es.caib.pinbal.client.recobriment.model.Solicitud;
 import es.caib.pinbal.client.recobriment.model.ScspSolicitante.ScspConsentimiento;
 import es.caib.pinbal.client.recobriment.model.ScspTitular.ScspTipoDocumentacion;
 import es.caib.pinbal.client.recobriment.svddgpciws02.ClientSvddgpciws02;
@@ -27,6 +29,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 
@@ -39,11 +42,7 @@ import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 @ViewScoped
 public class PoliciaClientController implements Serializable {
 
-    Dotenv dotenv = Dotenv.configure()
-        .directory("..")
-        .ignoreIfMalformed() // 
-        .ignoreIfMissing()
-        .load();
+    Dotenv dotenv =  Dotenv.load();
 
     private static final long serialVersionUID = 1L;
 
@@ -75,7 +74,7 @@ public class PoliciaClientController implements Serializable {
     }
 
     private ScspRespuesta resposta;
-    private ClientSvddgpciws02 clientSvddgpciws02 = new ClientSvddgpciws02(
+    private ClientGeneric clientSvddgpciws02 = new ClientGeneric(
         dotenv.get("ENDPOINT"),
         dotenv.get("USUARI"),
         dotenv.get("SECRET")
@@ -106,7 +105,7 @@ public class PoliciaClientController implements Serializable {
     public boolean confirmarIdentitat() {
         LOG.info("confirmarIdentitat");
 
-        ClientSvddgpciws02.SolicitudSvddgpciws02 solicitud = new ClientSvddgpciws02.SolicitudSvddgpciws02();
+        SolicitudConfirmacion solicitud = new SolicitudConfirmacion(null);
         solicitud.setIdentificadorSolicitante("S0711001H");
         solicitud.setCodigoProcedimiento("CODSVDR_GBA_20121107");
         solicitud.setUnidadTramitadora("Servei d'escolarització");
@@ -121,7 +120,7 @@ public class PoliciaClientController implements Serializable {
         titular.setDocumentacion("12345678Z");
         solicitud.setTitular(titular);
         try {
-            resposta = clientSvddgpciws02.peticionSincrona(Arrays.asList(solicitud));
+            resposta =  clientSvddgpciws02.peticionSincrona("SVDDGPCIWS02", List.of(solicitud));
             LOG.info("resposta => " + getResposta());
             return true;
         } catch (Exception e) {
@@ -134,27 +133,27 @@ public class PoliciaClientController implements Serializable {
 
     }
 
-    /**
-     * Cridat per obtenir el justificant de la petició en curs.
-     * 
-     * @throws IOException si es produeix un error de comunicació
-     */
+    public static class SolicitudConfirmacion extends Solicitud {
+		protected  String numeroSoporte;
 
-    /**
-     * Mètode d'utilitat per descarregar un fitxer
-     *
-     * @param filename Nom del fitxer
-     * @param mimetype tipus mime pel content-type
-     * @param content  contingut del fitxer
-     * @throws IOException Si es produeix un error I/O
-     */
-    private void download(String filename, String mimetype, byte[] content) throws IOException {
-        ExternalContext ec = context.getExternalContext();
-        ec.responseReset(); // Hem de resetejar la reposta per si hi ha cap capçalera o res.
-        ec.setResponseContentType(mimetype);
-        ec.setResponseContentLength(content.length);
-        ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-        ec.getResponseOutputStream().write(content);
-        context.responseComplete(); // Important perquè JSF no intenti seguir processant la resposta.
-    }
+		public SolicitudConfirmacion(String numeroSoporte) {
+			super();
+			this.numeroSoporte = numeroSoporte;
+		}
+
+		@Override
+		public String getDatosEspecificos() { // xml
+			StringBuilder xmlBuilder = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+			xmlBuilder.append("<DatosEspecificos>");
+			if (numeroSoporte != null && !numeroSoporte.isEmpty()) {
+				xmlBuilder.append("<Consulta>");
+				xmlBuilder.append(
+						xmlOptionalStringParameter(this.numeroSoporte, "NumeroSoporte")
+				);
+				xmlBuilder.append("</Consulta>");
+			}
+			xmlBuilder.append("</DatosEspecificos>");
+			return xmlBuilder.toString();
+		}
+	}
 }

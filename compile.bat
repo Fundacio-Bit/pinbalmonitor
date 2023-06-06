@@ -10,7 +10,7 @@ if %errorlevel% EQU 0 (
 	IF DEFINED PINBALMONITOR_DEPLOY_DIR (
 	  @echo on
 	  echo --------- COPIANT EAR ---------
-
+	  del %JBOSS_HOME%\standalone\log
 	  xcopy /Y pinbalmonitor-ear\target\pinbalmonitor.ear %PINBALMONITOR_DEPLOY_DIR%
 
 	) ELSE (

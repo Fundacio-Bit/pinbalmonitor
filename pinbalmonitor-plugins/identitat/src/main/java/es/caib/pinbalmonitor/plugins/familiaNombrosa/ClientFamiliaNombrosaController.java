@@ -1,89 +1,79 @@
-package es.caib.pinbalmonitor.plugins.identitat;
+
+package es.caib.pinbalmonitor.plugins.familiaNombrosa;
+
+import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.gson.Gson;
+import javax.faces.application.FacesMessage;
+
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+import javax.validation.Valid;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.List;
 
 import es.caib.pinbal.client.recobriment.ClientGeneric;
 import es.caib.pinbal.client.recobriment.model.ScspFuncionario;
-import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
 import es.caib.pinbal.client.recobriment.model.ScspTitular;
 import es.caib.pinbal.client.recobriment.model.Solicitud;
 import es.caib.pinbal.client.recobriment.model.ScspSolicitante.ScspConsentimiento;
 import es.caib.pinbal.client.recobriment.model.ScspTitular.ScspTipoDocumentacion;
+import es.caib.pinbal.client.recobriment.svdsccdws01.ClientSvdsccdws01;
 import es.caib.pinbalmonitor.plugins.Configuracio;
 import es.caib.pinbalmonitor.plugins.FuncionariModel;
 import es.caib.pinbalmonitor.plugins.TitularModel;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import io.github.cdimascio.dotenv.Dotenv;
-import com.google.gson.Gson;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.validation.Valid;
-import java.io.Serializable;
-import java.util.List;
+
 
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
-
 /**
  * Controlador d'exemple per emprar el servei de verificació d'identitat.
  *
  * @author areus
  */
-@Named("sviController")
+@Named("pinbalFN")
 @ViewScoped
-public class ServeiVerificacioIdentitatController implements Serializable {
-Dotenv dotenv = Dotenv.load();
+public class ClientFamiliaNombrosaController implements Serializable {
+    Dotenv dotenv = Dotenv.load();
 
     private  final String URL_BASE = dotenv.get("ENDPOINT");
     private  final String USUARI = dotenv.get("USUARI");    
     private  final String CONTRASENYA = dotenv.get("SECRET");
-
+ 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(ServeiVerificacioIdentitatController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ClientFamiliaNombrosaController.class);
 
     /**
      * Injecta l'API del client del servei de verificació d'identitat
      */
-    private ScspTipoDocumentacion DNI = ScspTipoDocumentacion.NIF;
 
 
 
-    @Inject
-    private Configuracio configuracio;
-    @Inject
-    private FacesContext context;
 
     @Valid
-    private TitularModel titular = new TitularModel("41509405V", DNI, "Berta", "Vergés", "Prova");
+    private TitularModel titular = new TitularModel("43117946F", ScspTipoDocumentacion.DNI, null, "Fuster", null);
+
 
     public TitularModel getTitular() {
         return titular;
     }
 
     @Valid
-    private FuncionariModel funcionari = new FuncionariModel("41509405V", "Prova");
+    private FuncionariModel funcionari;
 
     public FuncionariModel getFuncionari() {
-        return this.funcionari;
+        return funcionari;
     }
 
     private ScspRespuesta resposta;
 
     public ScspRespuesta getResposta() {
         return resposta;
-    }
-
-    @PostConstruct
-    protected void init() {
-        LOG.info("init");
-        // titular = new TitularModel("41509405V", ScspTipoDocumentacion.DNI, "Berta",
-        // "Vergés", "Prova");
-        // funcionari = new FuncionariModel("41509405V", "Prova");
     }
 
     /**
@@ -93,11 +83,18 @@ Dotenv dotenv = Dotenv.load();
         resposta = null;
     }
 
+
+ 
+    
+
+
+            
+
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-    public boolean verificarIdentitat() {
-        LOG.info("verificarIdentitat");
+    public boolean familiaNombrosa() {
+        LOG.info("solicitud discapacitat");
 
         ClientGeneric client = new ClientGeneric(URL_BASE, USUARI, CONTRASENYA);
         LOG.info("Client creat");
@@ -114,7 +111,6 @@ Dotenv dotenv = Dotenv.load();
 
         Solicitud solicitud = new Solicitud();
 
-    
         // Solicitant
         solicitud.setIdentificadorSolicitante("S0711001H");
 
@@ -126,37 +122,23 @@ Dotenv dotenv = Dotenv.load();
         solicitud.setCodigoUnidadTramitadora("A04123456");
         solicitud.setFinalidad("Finalitat solicitut");
         solicitud.setConsentimiento(ScspConsentimiento.Si);
-        solicitud.setIdExpediente("ID-Expedient");
     
         solicitud.setFuncionario(funcionario);
         solicitud.setTitular(titular);
-    
-    
 
+      
         try {
-            resposta = client.peticionSincrona("SVDDGPVIWS02", List.of(solicitud));
+            resposta = client.peticionSincrona("SVDSCTFNWS01", List.of(solicitud));
             LOG.info("resposta => " + getResposta());
             return true;
         } catch (Exception e) {
            e.printStackTrace();
         return false;
         }
-
-
     }
-    public static class SolicitudVerificacion extends Solicitud {
-		protected  String numeroSoporte;
 
-		public SolicitudVerificacion(String numeroSoporte) {
-			super();
-			this.numeroSoporte = numeroSoporte;
-		}
 
-	}
-    
-	
-
-    
-
+   
 
 }
+

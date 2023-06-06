@@ -1,5 +1,5 @@
 
-package es.caib.pinbalmonitor.plugins.pagamentContractacions;
+package es.caib.pinbalmonitor.plugins.pagamentAjudes;
 
 import es.caib.pinbal.client.recobriment.model.ScspRespuesta;
 import org.slf4j.Logger;
@@ -30,25 +30,17 @@ import io.github.cdimascio.dotenv.Dotenv;
  *
  * @author areus
  */
-@Named("pinbalCCAAContractacions")
+@Named("pinbalCCAAAjudes")
 @ViewScoped
-public class ClientPagamentContractacionsController implements Serializable {
+public class ClientPagamentAjudesController implements Serializable {
 
 
-    Dotenv dotenv = Dotenv.load();
-
-
-
-    private  final String URL_BASE = dotenv.get("ENDPOINT");
-    private  final String USUARI = dotenv.get("USUARI");    
-    private  final String CONTRASENYA =dotenv.get("SECRET");
-    private  final String SERVEI_SCSP = "SVDCCAACPCWS01";
-    private  final boolean ENABLE_LOGGING = true;
+   // Dotenv dotenv = Dotenv.load();
 
  
     private static final long serialVersionUID = 1L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(ClientPagamentContractacionsController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ClientPagamentAjudesController.class);
 
     /**
      * Injecta l'API del client del servei de verificació d'identitat
@@ -86,8 +78,15 @@ public class ClientPagamentContractacionsController implements Serializable {
     }
     @Valid
     private DatosEspecificos datosEspecificos;
+    Dotenv dotenv = Dotenv.load();
 
-    
+
+
+    private  final String URL_BASE = dotenv.get("ENDPOINT");
+    private  final String USUARI = dotenv.get("USUARI");    
+    private  final String CONTRASENYA =dotenv.get("SECRET");
+    private  final String SERVEI_SCSP = "SVDCCAACPASWS01";
+    private  final boolean ENABLE_LOGGING = true;
 
 
             

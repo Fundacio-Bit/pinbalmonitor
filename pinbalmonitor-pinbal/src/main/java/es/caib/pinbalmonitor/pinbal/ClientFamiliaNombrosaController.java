@@ -81,7 +81,7 @@ public class ClientFamiliaNombrosaController implements Serializable {
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-    public void correntPagament() {
+    public void familiaNombrosa() {
         LOG.info("ClientFN");
 
         ClientSvdsctfnws01.SolicitudSvdsctfnws01 solicitud = new ClientSvdsctfnws01.SolicitudSvdsctfnws01();
