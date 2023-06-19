@@ -124,12 +124,17 @@ public class ServeiDiscapacitatController implements Serializable {
           xmlDadesEspecifiques.append("07");
           xmlDadesEspecifiques.append("</CodigoProvincia>");
 
+          xmlDadesEspecifiques.append("<Expediente>");
+          xmlDadesEspecifiques.append("30/1002953-M/94");
+          xmlDadesEspecifiques.append("</Expediente>");
+
           xmlDadesEspecifiques.append("<FechaConsulta>");
           xmlDadesEspecifiques.append("30/08/2022");
           xmlDadesEspecifiques.append("</FechaConsulta>");
 
+
           xmlDadesEspecifiques.append("<DatosAdicionalesTitular>");
-          xmlDadesEspecifiques.append("<FechaNacimiento>31/08/2022</FechaNacimiento>");
+          xmlDadesEspecifiques.append("<FechaNacimiento>06/08/1990</FechaNacimiento>");
           xmlDadesEspecifiques.append("</DatosAdicionalesTitular>");
   
           xmlDadesEspecifiques.append("<ConsentimientoTiposDiscapacidad>");

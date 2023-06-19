@@ -19,8 +19,7 @@ import es.caib.pinbalmonitor.plugins.policia.PoliciaClientController;
 import es.caib.pinbalmonitor.plugins.padro.ClientPadroHistoricController;
 import es.caib.pinbalmonitor.plugins.padro.ClientPadroConvivenciaController;
 import es.caib.pinbalmonitor.plugins.familiaNombrosa.ClientFamiliaNombrosaController;
-
-
+import com.google.gson.JsonObject;
 import javax.ws.rs.PathParam;
 @Path("pinbal")
 public class PinbalResource {
@@ -43,6 +42,28 @@ public class PinbalResource {
     return  Response.status(200).entity(verificacioIdentitat.verificarIdentitat()).build();
     }
     
+    /*
+    
+    @POST
+    @Path("justificantVerificacioIdentitat")
+    public Response getJustificant() {
+
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Origin", "*")
+        		.header("Access-Control-Allow-Headers",
+        		        "origin, content-type, accept, authorization")
+        		.header("Access-Control-Allow-Credentials", "true")
+        		.header("Access-Control-Allow-Methods",
+        		        "GET, POST, PUT, DELETE, OPTIONS, HEAD").entity(verificacioIdentitat.provaJustificant()).build();
+
+    
+    }*/
+
+    @POST
+    @Path("asincrona/{codiMunicipi}")
+    public Response getVerificacioAsincrona()  {
+    return  Response.status(200).entity(verificacioIdentitat.provaAsync()).build();
+    
+    }
     
     @POST
     @Path("confirmacioIdentitat")
@@ -54,15 +75,12 @@ public class PinbalResource {
     @POST
     @Path("pagamentContractacions")
     public Response getPagamentContractacions()  {
-
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Origin", "*")
+    return Response.status(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Origin", "*")
         		.header("Access-Control-Allow-Headers",
         		        "origin, content-type, accept, authorization")
         		.header("Access-Control-Allow-Credentials", "true")
         		.header("Access-Control-Allow-Methods",
-        		        "GET, POST, PUT, DELETE, OPTIONS, HEAD").entity(pagamentContractacions.correntPagament()).build();
-
-    
+        		        "GET, POST, PUT, DELETE, OPTIONS, HEAD").entity(  pagamentContractacions.correntPagament()).build();
     }
     
 
@@ -103,7 +121,7 @@ public class PinbalResource {
         		        "origin, content-type, accept, authorization")
         		.header("Access-Control-Allow-Credentials", "true")
         		.header("Access-Control-Allow-Methods",
-        		        "GET, POST, PUT, DELETE, OPTIONS, HEAD").entity(  padroHistoric.padro(codiMunicipi)).build();
+        		        "GET, POST, PUT, DELETE, OPTIONS, HEAD").entity(padroHistoric.padro(codiMunicipi)).build();
 
     
     }

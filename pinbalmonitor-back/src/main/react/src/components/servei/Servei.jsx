@@ -9,8 +9,6 @@ import SnackbarResultat from "../snackbarResultat/SnackbarResultat";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import functions from "../helpers";
-
-
 export default function Servei(props) {
 
   const [loading, setLoading] = useState(false);
@@ -32,29 +30,33 @@ export default function Servei(props) {
     console.log(props)
     console.log(props.ruta)
     fetch(`${props.ruta}`,
-    		{
+    		{method: 'POST',
+        redirect: 'follow',
       headers: {
-			"Authorization": "posar a mà"
-		}},)
+			"Authorization": process.env.REACT_APP_AUTH,
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+		}})
       .then((res) => {
-        console.log(res);
+        return res.text();
+      }).then(function(data) {
         setLoading(false);
-        console.log(res.body)
-      res.body === 'true'
-          ? setResultatProva("exit")
-          : setResultatProva("fall");
-        setUltimaProva(
-          " Última execució: " +
-            new Date().toLocaleString("ca-ES", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-            })
-        );
-      })
+        data == 'true'
+             ? setResultatProva("exit")
+             : setResultatProva("fall");
+           setUltimaProva(
+             " Última execució: " +
+               new Date().toLocaleString("ca-ES", {
+                 weekday: "long",
+                 year: "numeric",
+                 month: "long",
+                 day: "numeric",
+                 hour: "2-digit",
+                 minute: "2-digit",
+               })
+           );
+         }
+      )
       .then(() => {
         setObrirSnackbar(true);
       })
