@@ -40,9 +40,7 @@ public class ServeiEscolaritzacioController implements Serializable {
 
 
 
-    private  final String URL_BASE = dotenv.get("ENDPOINT");
-    private  final String USUARI = dotenv.get("USUARI");    
-    private  final String CONTRASENYA =dotenv.get("SECRET");
+
     private  final String SERVEI_SCSP = "SCMCEDU";
     private  final boolean ENABLE_LOGGING = true;
 
@@ -55,7 +53,23 @@ public class ServeiEscolaritzacioController implements Serializable {
      * Injecta l'API del client del servei de verificació d'identitat
      */
 
+    
+     private ClientGeneric getClient(String entorn) {
+    	ClientGeneric client;
+    	LOG.info(entorn);
+          if (entorn == "proves") {
+        	client= new ClientGeneric(dotenv.get("ENDPOINT_PROVES"), dotenv.get("USUARI_PROVES"), dotenv.get("SECRET_PROVES"));
 
+    	}
+         
+          else {
+            LOG.info("pasa x el if");
+   		 client= new ClientGeneric(dotenv.get("ENDPOINT_PROD"), dotenv.get("USUARI_PROD"), dotenv.get("SECRET_PROD"));
+
+          }
+		return client;
+    }
+    
 
 
     @Valid
@@ -96,10 +110,9 @@ public class ServeiEscolaritzacioController implements Serializable {
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-    public boolean matricula() {
+    public boolean matricula(String entorn) {
     	LOG.info("escolarització");
         //client
-        ClientGeneric client = new ClientGeneric(URL_BASE, USUARI, CONTRASENYA);
         LOG.info("Client creat");
 
         
@@ -153,7 +166,7 @@ public class ServeiEscolaritzacioController implements Serializable {
         // 
 
         try {
-            resposta =  client.peticionSincrona("SCMCEDU", Arrays.asList(solicitud));
+            resposta =  getClient(entorn).peticionSincrona("SCMCEDU", Arrays.asList(solicitud));
             return true;
         } catch (Exception e) {
             //FacesMessage message = new FacesMessage(SEVERITY_ERROR, "Error al client Pinbal", e.getMessage());

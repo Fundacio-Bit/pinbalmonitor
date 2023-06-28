@@ -40,9 +40,6 @@ import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 public class ClientFamiliaNombrosaController implements Serializable {
     Dotenv dotenv = Dotenv.load();
 
-    private  final String URL_BASE = dotenv.get("ENDPOINT");
-    private  final String USUARI = dotenv.get("USUARI");    
-    private  final String CONTRASENYA = dotenv.get("SECRET");
  
     private static final long serialVersionUID = 1L;
 
@@ -85,6 +82,21 @@ public class ClientFamiliaNombrosaController implements Serializable {
 
 
  
+    private ClientGeneric getClient(String entorn) {
+    	ClientGeneric client;
+    	LOG.info(entorn);
+          if (entorn == "proves") {
+        	client= new ClientGeneric(dotenv.get("ENDPOINT_PROVES"), dotenv.get("USUARI_PROVES"), dotenv.get("SECRET_PROVES"));
+
+    	}
+         
+          else {
+            LOG.info("pasa x el if");
+   		 client= new ClientGeneric(dotenv.get("ENDPOINT_PROD"), dotenv.get("USUARI_PROD"), dotenv.get("SECRET_PROD"));
+
+          }
+		return client;
+    }
     
 
 
@@ -93,11 +105,10 @@ public class ClientFamiliaNombrosaController implements Serializable {
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-    public boolean familiaNombrosa() {
+    public boolean familiaNombrosa(String entorn) {
         LOG.info("solicitud discapacitat");
 
-        ClientGeneric client = new ClientGeneric(URL_BASE, USUARI, CONTRASENYA);
-        LOG.info("Client creat");
+
         
         // Funcionari
         ScspFuncionario funcionario = new ScspFuncionario();
@@ -128,7 +139,7 @@ public class ClientFamiliaNombrosaController implements Serializable {
 
       
         try {
-            resposta = client.peticionSincrona("SVDSCTFNWS01", List.of(solicitud));
+            resposta = getClient(entorn).peticionSincrona("SVDSCTFNWS01", List.of(solicitud));
             LOG.info("resposta => " + getResposta());
             return true;
         } catch (Exception e) {

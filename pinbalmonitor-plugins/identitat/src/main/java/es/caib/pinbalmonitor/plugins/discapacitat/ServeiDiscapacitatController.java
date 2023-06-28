@@ -85,7 +85,22 @@ public class ServeiDiscapacitatController implements Serializable {
 
 
  
-    
+    private ClientGeneric getClient(String entorn) {
+    	ClientGeneric client;
+    	LOG.info(entorn);
+          if (entorn == "proves") {
+        	client= new ClientGeneric(dotenv.get("ENDPOINT_PROVES"), dotenv.get("USUARI_PROVES"), dotenv.get("SECRET_PROVES"));
+
+    	}
+         
+          else {
+            LOG.info("pasa x el if");
+   		 client= new ClientGeneric(dotenv.get("ENDPOINT_PROD"), dotenv.get("USUARI_PROD"), dotenv.get("SECRET_PROD"));
+
+          }
+		return client;
+    }
+
 
 
             
@@ -93,10 +108,9 @@ public class ServeiDiscapacitatController implements Serializable {
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-    public boolean discapacitat() {
+    public boolean discapacitat(String entorn) {
         LOG.info("solicitud discapacitat");
 
-        ClientGeneric client = new ClientGeneric(URL_BASE, USUARI, CONTRASENYA);
         LOG.info("Client creat");
         
         // Funcionari
@@ -166,7 +180,7 @@ public class ServeiDiscapacitatController implements Serializable {
 
       
         try {
-            resposta = client.peticionSincrona("SVDSCDDWS01", List.of(solicitud));
+            resposta = getClient(entorn).peticionSincrona("SVDSCDDWS01", List.of(solicitud));
             LOG.info("resposta => " + getResposta());
             return true;
         } catch (Exception e) {

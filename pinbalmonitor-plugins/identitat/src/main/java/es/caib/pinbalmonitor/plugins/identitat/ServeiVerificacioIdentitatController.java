@@ -10,6 +10,7 @@ import es.caib.pinbal.client.recobriment.model.Solicitud;
 import es.caib.pinbal.client.recobriment.model.ScspSolicitante.ScspConsentimiento;
 import es.caib.pinbal.client.recobriment.model.ScspTitular.ScspTipoDocumentacion;
 import es.caib.pinbalmonitor.plugins.Configuracio;
+import es.caib.pinbalmonitor.plugins.Entorns;
 import es.caib.pinbalmonitor.plugins.FuncionariModel;
 import es.caib.pinbalmonitor.plugins.TitularModel;
 
@@ -43,9 +44,6 @@ import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 public class ServeiVerificacioIdentitatController implements Serializable {
 Dotenv dotenv = Dotenv.load();
 
-    private  final String URL_BASE = dotenv.get("ENDPOINT");
-    private  final String USUARI = dotenv.get("USUARI");    
-    private  final String CONTRASENYA = dotenv.get("SECRET");
 
     private static final long serialVersionUID = 1L;
 
@@ -56,7 +54,8 @@ Dotenv dotenv = Dotenv.load();
      */
     private ScspTipoDocumentacion DNI = ScspTipoDocumentacion.NIF;
 
-    ClientGeneric client = new ClientGeneric(URL_BASE, USUARI, CONTRASENYA);
+   // ClientGeneric clientProves = new ClientGeneric(dotenv.get("ENDPOINT_PROVES"), dotenv.get("USUARI_PROVES"), dotenv.get("SECRET_PROVES"));
+   // ClientGeneric clientProd = new ClientGeneric(dotenv.get("ENDPOINT_PROD"), dotenv.get("USUARI_PROD"), dotenv.get("SECRET_PROD"));
 
 
     @Inject
@@ -102,8 +101,27 @@ Dotenv dotenv = Dotenv.load();
 
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
+     * @throws Exception 
      */
-    public String verificarIdentitat() {
+    
+    private ClientGeneric getClient(String entorn) {
+    	ClientGeneric client;
+    	LOG.info(entorn);
+          if (entorn == "proves") {
+        	client= new ClientGeneric(dotenv.get("ENDPOINT_PROVES"), dotenv.get("USUARI_PROVES"), dotenv.get("SECRET_PROVES"));
+
+    	}
+         
+          else {
+            LOG.info("pasa x el if");
+   		 client= new ClientGeneric(dotenv.get("ENDPOINT_PROD"), dotenv.get("USUARI_PROD"), dotenv.get("SECRET_PROD"));
+
+          }
+		return client;
+    }
+    
+    public String verificarIdentitat(String entorn) {
+    	
         LOG.info("verificarIdentitat");
 
         LOG.info("Client creat");
@@ -136,9 +154,10 @@ Dotenv dotenv = Dotenv.load();
     
         solicitud.setFuncionario(funcionario);
         solicitud.setTitular(titular);
-        
+   	 	
+
         try {
-            resposta = client.peticionSincrona("SVDDGPVIWS02", List.of(solicitud));
+            resposta = getClient(entorn).peticionSincrona("SVDDGPVIWS02", List.of(solicitud));
             LOG.info("resposta => " + getResposta());
             return "true";
         } catch (Exception e) {
@@ -149,7 +168,7 @@ Dotenv dotenv = Dotenv.load();
 
     }
   
-    
+    /* 
     public boolean provaAsync() {
 
         LOG.info("verificarIdentitat");
@@ -192,7 +211,7 @@ Dotenv dotenv = Dotenv.load();
             return false;
     		
     	}
-    }
+    }*/
     
     
    

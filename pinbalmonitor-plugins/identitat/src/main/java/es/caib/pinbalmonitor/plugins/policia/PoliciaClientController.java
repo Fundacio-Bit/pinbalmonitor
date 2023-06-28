@@ -42,6 +42,7 @@ import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 @ViewScoped
 public class PoliciaClientController implements Serializable {
 
+
     Dotenv dotenv =  Dotenv.load();
 
     private static final long serialVersionUID = 1L;
@@ -74,14 +75,27 @@ public class PoliciaClientController implements Serializable {
     }
 
     private ScspRespuesta resposta;
-    private ClientGeneric clientSvddgpciws02 = new ClientGeneric(
-        dotenv.get("ENDPOINT"),
-        dotenv.get("USUARI"),
-        dotenv.get("SECRET")
-        );
+
 
     public ScspRespuesta getResposta() {
         return resposta;
+    }
+
+        
+    private ClientGeneric getClient(String entorn) {
+    	ClientGeneric client;
+    	LOG.info(entorn);
+          if (entorn == "proves") {
+        	client= new ClientGeneric(dotenv.get("ENDPOINT_PROVES"), dotenv.get("USUARI_PROVES"), dotenv.get("SECRET_PROVES"));
+
+    	}
+         
+          else {
+            LOG.info("pasa x el if");
+   		 client= new ClientGeneric(dotenv.get("ENDPOINT_PROD"), dotenv.get("USUARI_PROD"), dotenv.get("SECRET_PROD"));
+
+          }
+		return client;
     }
 
     @PostConstruct
@@ -102,25 +116,42 @@ public class PoliciaClientController implements Serializable {
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-    public boolean confirmarIdentitat() {
+    public boolean confirmarIdentitat(String entorn) {
         LOG.info("confirmarIdentitat");
 
-        SolicitudConfirmacion solicitud = new SolicitudConfirmacion(null);
-        solicitud.setIdentificadorSolicitante("S0711001H");
-        solicitud.setCodigoProcedimiento("CODSVDR_GBA_20121107");
-        solicitud.setUnidadTramitadora("Servei d'escolarització");
-        solicitud.setFinalidad("Baremacions per el proces d'escolaritzacio");
-        solicitud.setConsentimiento(ScspConsentimiento.Si);
+        LOG.info("Client creat");
+        
+        // Funcionari
         ScspFuncionario funcionario = new ScspFuncionario();
         funcionario.setNifFuncionario("00000000T");
         funcionario.setNombreCompletoFuncionario("Funcionari CAIB");
-        solicitud.setFuncionario(funcionario);
+    
+        // Titular
         ScspTitular titular = new ScspTitular();
-        titular.setTipoDocumentacion(ScspTipoDocumentacion.NIF);
-        titular.setDocumentacion("12345678Z");
+        titular.setTipoDocumentacion(ScspTipoDocumentacion.DNI);
+        titular.setDocumentacion("10000949C");
+
+        Solicitud solicitud = new Solicitud();
+
+    
+        // Solicitant
+        solicitud.setIdentificadorSolicitante("S0711001H");
+
+        solicitud.setNombreSolicitante("Solicitant");
+        // Procediment
+        solicitud.setCodigoProcedimiento("CODSVDR_GBA_20121107");
+        // Unitat tramitadora
+        solicitud.setUnidadTramitadora("Unitat de test");
+        solicitud.setCodigoUnidadTramitadora("A04123456");
+        solicitud.setFinalidad("Finalitat solicitut");
+        solicitud.setConsentimiento(ScspConsentimiento.Si);
+        solicitud.setIdExpediente("ID-Expedient");
+    
+        solicitud.setFuncionario(funcionario);
         solicitud.setTitular(titular);
+   	 	
         try {
-            resposta =  clientSvddgpciws02.peticionSincrona("SVDDGPCIWS02", List.of(solicitud));
+          resposta = getClient(entorn).peticionSincrona("SVDDGPCIWS02", List.of(solicitud));
             LOG.info("resposta => " + getResposta());
             return true;
         } catch (Exception e) {
@@ -133,27 +164,4 @@ public class PoliciaClientController implements Serializable {
 
     }
 
-    public static class SolicitudConfirmacion extends Solicitud {
-		protected  String numeroSoporte;
-
-		public SolicitudConfirmacion(String numeroSoporte) {
-			super();
-			this.numeroSoporte = numeroSoporte;
-		}
-
-		@Override
-		public String getDatosEspecificos() { // xml
-			StringBuilder xmlBuilder = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-			xmlBuilder.append("<DatosEspecificos>");
-			if (numeroSoporte != null && !numeroSoporte.isEmpty()) {
-				xmlBuilder.append("<Consulta>");
-				xmlBuilder.append(
-						xmlOptionalStringParameter(this.numeroSoporte, "NumeroSoporte")
-				);
-				xmlBuilder.append("</Consulta>");
-			}
-			xmlBuilder.append("</DatosEspecificos>");
-			return xmlBuilder.toString();
-		}
-	}
 }

@@ -81,53 +81,61 @@ public class ClientPadroHistoricController implements Serializable {
     Dotenv dotenv = Dotenv.load();
 
 
-
-    private  final String URL_BASE = dotenv.get("ENDPOINT");
-    private  final String USUARI = dotenv.get("USUARI");    
-    private  final String CONTRASENYA =dotenv.get("SECRET");
-    private  final String SERVEI_SCSP = "SCDHPAJU";
     private  final boolean ENABLE_LOGGING = true;
 
-    ClientScdhpaju client = new ClientScdhpaju(
-        URL_BASE,
-        USUARI,
-        CONTRASENYA);
+    private ClientScdhpaju getClient(String entorn) {
+    	ClientScdhpaju client;
+    	LOG.info(entorn);
+          if (entorn == "proves") {
+        	client= new ClientScdhpaju(dotenv.get("ENDPOINT_PROVES"), dotenv.get("USUARI_PROVES"), dotenv.get("SECRET_PROVES"));
+
+    	}
+         
+          else {
+   		 client= new ClientScdhpaju(dotenv.get("ENDPOINT_PROD"), dotenv.get("USUARI_PROD"), dotenv.get("SECRET_PROD"));
+
+          }
+		return client;
+    }
+    
+
+
             
 
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-public boolean padro(String codiMunicipi)  {
-ClientScdhpaju.SolicitudScdhpaju solicitud = new ClientScdhpaju.SolicitudScdhpaju();
-solicitud.setIdentificadorSolicitante("S0711001H");
-// Procediment
-solicitud.setCodigoProcedimiento("CODSVDR_GBA_20121107");
-// Unitat tramitadora
-solicitud.setUnidadTramitadora("Unitat de test");
-solicitud.setCodigoUnidadTramitadora("A04123456");
-solicitud.setUnidadTramitadora("Departament de test");
-solicitud.setFinalidad("Test peticionSincrona");
-solicitud.setConsentimiento(ScspConsentimiento.Si);
-ScspFuncionario funcionario = new ScspFuncionario();
-funcionario.setNifFuncionario("00000000T");
-funcionario.setNombreCompletoFuncionario("Funcionari CAIB");
-solicitud.setFuncionario(funcionario);
-ScspTitular titular = new ScspTitular();
-titular.setTipoDocumentacion(ScspTipoDocumentacion.DNI);
-titular.setDocumentacion("12345678Z");
-solicitud.setTitular(titular);
-solicitud.setConsultaPerDocumentIdentitat("NIF", "12345678Z", null);
-solicitud.setConsultaPerDadesPersonals(null, null, null, null, null, null,
-null, null, null);
-solicitud.setConsultaPerReferenciaNia(null);
-solicitud.setProvinciaSolicitud("07");
-solicitud.setMunicipioSolicitud(codiMunicipi);
-solicitud.setNumeroAnyos(null);
+    public boolean padro(String codiMunicipi, String entorn)  {
+        ClientScdhpaju.SolicitudScdhpaju solicitud = new ClientScdhpaju.SolicitudScdhpaju();
+        solicitud.setIdentificadorSolicitante("S0711001H");
+        // Procediment
+        solicitud.setCodigoProcedimiento("CODSVDR_GBA_20121107");
+        // Unitat tramitadora
+        solicitud.setUnidadTramitadora("Unitat de test");
+        solicitud.setCodigoUnidadTramitadora("A04123456");
+        solicitud.setUnidadTramitadora("Departament de test");
+        solicitud.setFinalidad("Test peticionSincrona");
+        solicitud.setConsentimiento(ScspConsentimiento.Si);
+        ScspFuncionario funcionario = new ScspFuncionario();
+        funcionario.setNifFuncionario("00000000T");
+        funcionario.setNombreCompletoFuncionario("Funcionari CAIB");
+        solicitud.setFuncionario(funcionario);
+        ScspTitular titular = new ScspTitular();
+        titular.setTipoDocumentacion(ScspTipoDocumentacion.DNI);
+        titular.setDocumentacion("12345678Z");
+        solicitud.setTitular(titular);
+        solicitud.setConsultaPerDocumentIdentitat("NIF", "12345678Z", null);
+        solicitud.setConsultaPerDadesPersonals(null, null, null, null, null, null,
+        null, null, null);
+        solicitud.setConsultaPerReferenciaNia(null);
+        solicitud.setProvinciaSolicitud("07");
+        solicitud.setMunicipioSolicitud(codiMunicipi);
+        solicitud.setNumeroAnyos(null);
     
         
     
         try {
-            client.peticionSincrona(Arrays.asList(solicitud));
+            getClient(entorn).peticionSincrona(Arrays.asList(solicitud));
         return true;
         } catch (Exception e) {
             //FacesMessage message = new FacesMessage(SEVERITY_ERROR, "Error al client Pinbal", e.getMessage());

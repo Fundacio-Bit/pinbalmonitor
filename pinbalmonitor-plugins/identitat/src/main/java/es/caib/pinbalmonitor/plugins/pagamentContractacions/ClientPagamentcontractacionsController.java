@@ -39,9 +39,6 @@ public class ClientPagamentContractacionsController implements Serializable {
 
 
 
-    private  final String URL_BASE = dotenv.get("ENDPOINT");
-    private  final String USUARI = dotenv.get("USUARI");    
-    private  final String CONTRASENYA =dotenv.get("SECRET");
     private  final String SERVEI_SCSP = "SVDCCAACPCWS01";
     private  final boolean ENABLE_LOGGING = true;
 
@@ -88,16 +85,29 @@ public class ClientPagamentContractacionsController implements Serializable {
     private DatosEspecificos datosEspecificos;
 
     
+    private ClientGeneric getClient(String entorn) {
+    	ClientGeneric client;
+    	LOG.info(entorn);
+          if (entorn == "proves") {
+        	client= new ClientGeneric(dotenv.get("ENDPOINT_PROVES"), dotenv.get("USUARI_PROVES"), dotenv.get("SECRET_PROVES"));
 
+    	}
+         
+          else {
+            LOG.info("pasa x el if");
+   		 client= new ClientGeneric(dotenv.get("ENDPOINT_PROD"), dotenv.get("USUARI_PROD"), dotenv.get("SECRET_PROD"));
+
+          }
+		return client;
+    }
 
             
 
     /**
      * Cridat en fer un submit del formulari per fer la consulta al servei.
      */
-    public boolean correntPagament()  {
+    public boolean correntPagament(String entorn)  {
 
-        ClientGeneric client = new ClientGeneric(URL_BASE, USUARI, CONTRASENYA);
         
         // Funcionari
         ScspFuncionario funcionario = new ScspFuncionario();
@@ -145,7 +155,7 @@ public class ClientPagamentContractacionsController implements Serializable {
         
     
         try {
-        ScspRespuesta respuesta = client.peticionSincrona(SERVEI_SCSP, Arrays.asList(solicitud));
+        ScspRespuesta respuesta = getClient(entorn).peticionSincrona(SERVEI_SCSP, Arrays.asList(solicitud));
         return true;
         } catch (Exception e) {
             //FacesMessage message = new FacesMessage(SEVERITY_ERROR, "Error al client Pinbal", e.getMessage());
