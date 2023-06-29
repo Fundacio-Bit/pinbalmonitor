@@ -10,7 +10,6 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import functions from "../helpers";
 export default function Servei(props) {
-
   const [loading, setLoading] = useState(false);
   const [resultatProva, setResultatProva] = useSessionStorage(
     `resultat ${props.id}`, ""
@@ -24,16 +23,19 @@ export default function Servei(props) {
   /** Loading fals temporal per a poder fer els estils  de la petició quan carrega
    * TODO: Ha de ser esborrat quan tinguem el controlador.
    */
+
+
   function mockLoading() {
     //fetch temporal per simular request -> resultat aleatori
     setLoading(true);
+    let url = `${props.ruta}/${props.entorn == 'producció'? 'produccio' : 'proves'}`
     console.log(props)
-    console.log(props.ruta)
-    fetch(`${props.ruta}`,
+    console.log("url:" + url)
+    fetch(url,
     		{method: 'POST',
         redirect: 'follow',
       headers: {
-			"Authorization": process.env.REACT_APP_AUTH,
+			"Authorization": "Posar aquí token",
       "Content-Type": "application/json",
       "Accept": "application/json"
 		}})
